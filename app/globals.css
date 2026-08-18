@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/* ==========================================================
+   JURAL v2
+   Editorial–technical. The product is the visual system:
+   every graphic on this page is real, coded app UI.
+   No glass, no aurora, no gradient text, no icon-card grids.
+   ========================================================== */
+
+@theme {
+  --color-paper: #faf9f7;   /* warm reading canvas */
+  --color-paper-2: #f2f0ec; /* recessed light band */
+  --color-theatre: #0a0a0c; /* dark product band  */
+  --color-theatre-2: #131317;
+
+  --color-ink: #0e0e10;
+  --color-ink-2: #3a3a40;
+  --color-ink-3: #5c5c66;   /* AA on paper */
+  --color-ink-4: #6b6b76;   /* AA on paper and paper-2 */
+
+  --color-chalk: #f4f4f6;   /* text on theatre */
+  --color-chalk-2: #a6a6b2;
+  --color-chalk-3: #7d7d8a;  /* AA on every dark band */
+
+  --color-blue: #0c6fc4;    /* AA interactive on light */
+  --color-ios: #0a84ff;     /* the app's own blue — accents, dots, strokes */
+  /* Filled surfaces that carry white text use a fractionally deeper blue:
+     white on #0a84ff is 3.65:1. Visually indistinguishable, but legible. */
+  --color-ios-deep: #0a6fd8;
+  --color-ios-2: #45c8fb;
+
+  --color-rule: rgba(14, 14, 16, 0.1);
+  --color-rule-dark: rgba(255, 255, 255, 0.1);
+
+  --font-sans: var(--f-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--f-mono), ui-monospace, "SF Mono", monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* ---- Type -------------------------------------------------
+     Display sits at very tight tracking with a low, deliberate
+     line-height — the difference between "big text" and typeset. */
+  .d1 {
+    font-size: clamp(2.9rem, 1rem + 7.2vw, 6.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    font-weight: 500;
+  }
+  .d2 {
+    font-size: clamp(2.1rem, 1.1rem + 4.2vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+  }
+  .d3 {
+    font-size: clamp(1.5rem, 1.1rem + 1.7vw, 2.15rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
+  .lead {
+    font-size: clamp(1.05rem, 0.98rem + 0.45vw, 1.28rem);
+    line-height: 1.5;
+    letter-spacing: -0.014em;
+    color: var(--color-ink-2);
+  }
+  .body {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    letter-spacing: -0.008em;
+    color: var(--color-ink-2);
+  }
+  .small {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--color-ink-3);
+  }
+
+  /* Mono is structural here — section numbers, file refs, timestamps.
+     It annotates the page like a document, not decoration. */
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 22px;
+  }
+  @media (min-width: 900px) {
+    .wrap {
+      padding-inline: 44px;
+    }
+  }
+
+  /* Hairline rules do the structural work that cards did in v1 */
+  .rule {
+    border-top: 1px solid var(--color-rule);
+  }
+  .rule-d {
+    border-top: 1px solid var(--color-rule-dark);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.35; transform: translateY(0); }
+  50%      { opacity: 1;    transform: translateY(-2px); }
+}
+
+/* Above-the-fold entrance.
+   Pure CSS so the hero — and the LCP heading — paints from server HTML
+   without waiting on hydration or on motion's whileInView observer. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+.rise-now {
+  animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise-now { animation: none; }
+}
