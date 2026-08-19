@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 /**
  * The privacy argument, drawn.
  *
- * Left: what a cloud tool does with a privileged file — it crosses a boundary
+ * Left: what a cloud tool does with a privileged file, it crosses a boundary
  * and keeps crossing. Right: Jural's loop closes inside the device. The point
  * is the boundary line, so the boundary is the loudest thing in the picture.
  */
@@ -47,9 +47,9 @@ export function Boundary() {
         </div>
 
         <p className="small mt-5 leading-relaxed">
-          The file leaves. After that its safety is a contract someone else
-          wrote — retention windows, sub-processors, and a breach notification
-          you would be the last to read.
+          Once the file leaves, its safety is a contract someone else wrote:
+          retention windows, sub-processors, and a breach notice you&rsquo;d be
+          the last to hear about.
         </p>
       </figure>
 
@@ -57,7 +57,7 @@ export function Boundary() {
       <figure>
         <figcaption className="mono mb-5 text-[color:var(--color-blue)]">Jural</figcaption>
 
-        <div className="relative h-[210px] overflow-hidden rounded-2xl border border-[color:var(--color-ink)] bg-[color:var(--color-ink)] p-5">
+        <div className="relative h-[210px] overflow-hidden rounded-2xl border border-[color:var(--color-theatre)] bg-[color:var(--color-theatre)] p-5">
           <div className="absolute inset-0 grid place-items-center">
             <div className="relative grid size-[128px] place-items-center rounded-[2rem] border border-white/15">
               <span className="mono text-[9px] text-white/55">on device</span>
@@ -90,9 +90,9 @@ export function Boundary() {
         </div>
 
         <p className="small mt-5 leading-relaxed">
-          The model runs on the phone. There is no upload step to secure, no
-          retention policy to trust, and no copy of the matter anywhere you
-          could not delete yourself.
+          The model runs on the phone. There&rsquo;s no upload to secure, no
+          retention policy to take on faith, and no copy of the case sitting
+          anywhere you can&rsquo;t delete yourself.
         </p>
       </figure>
     </div>
@@ -116,7 +116,7 @@ function Node({ label, solid }: { label: string; solid?: boolean }) {
       <span
         className={`size-9 rounded-xl border ${
           solid
-            ? "border-[color:var(--color-ink)] bg-[color:var(--color-ink)]"
+            ? "border-[color:var(--color-blue)] bg-[color:var(--color-blue)]"
             : "border-[color:var(--color-rule)] bg-white"
         }`}
       />

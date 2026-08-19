@@ -4,11 +4,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const SECTIONS = [
-  { id: "premise", n: "01", label: "The premise" },
-  { id: "matter", n: "02", label: "The product" },
-  { id: "knows", n: "03", label: "What it knows" },
-  { id: "boundary", n: "04", label: "Privacy" },
-  { id: "faq", n: "05", label: "Questions" },
+  { id: "features", label: "Features" },
+  { id: "knows", label: "Intelligence" },
+  { id: "boundary", label: "Privacy" },
+  { id: "faq", label: "Questions" },
 ];
 
 export function Nav() {
@@ -16,9 +15,8 @@ export function Nav() {
   const [here, setHere] = useState<string | null>(null);
 
   useEffect(() => {
-    // Scroll-spy. Measured directly rather than via IntersectionObserver so
-    // the same rule decides it at every scroll position: the last section
-    // whose top has passed the reading line wins.
+    // Scroll-spy measured straight from the handler so one rule decides it at
+    // every position: the last section whose top has passed the reading line.
     const onScroll = () => {
       setSolid(window.scrollY > 24);
 
@@ -51,7 +49,7 @@ export function Nav() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
           solid
-            ? "border-b border-[color:var(--color-rule)] bg-[color:var(--color-paper)]/85 backdrop-blur-xl"
+            ? "border-b border-[color:var(--color-rule)] bg-[color:var(--color-paper)]/55 backdrop-blur-2xl backdrop-saturate-150"
             : ""
         }`}
       >
@@ -61,11 +59,11 @@ export function Nav() {
             className="inline-flex min-h-11 shrink-0 items-center gap-2"
             aria-label="Jural, home"
           >
-            <Image src="/brand/jural-mark.png" alt="" width={22} height={28} priority />
-            <span className="text-[17px] font-semibold tracking-[-0.035em]">Jural</span>
+            <Image src="/brand/jural-mark.png" alt="" width={24} height={30} priority />
+            <span className="text-[21px] font-semibold tracking-[-0.04em]">Jural</span>
           </a>
 
-          <nav aria-label="Sections" className="hidden lg:block">
+          <nav aria-label="Sections" className="hidden md:block">
             <ul className="flex items-center gap-1">
               {SECTIONS.map((s) => {
                 const on = here === s.id;
@@ -74,26 +72,13 @@ export function Nav() {
                     <a
                       href={`#${s.id}`}
                       aria-current={on ? "true" : undefined}
-                      className="group inline-flex min-h-11 items-center gap-1.5 px-2.5"
+                      className={`inline-flex min-h-11 items-center px-3 text-[14px] transition-colors ${
+                        on
+                          ? "text-[color:var(--color-blue)]"
+                          : "text-[color:var(--color-ink-3)] hover:text-[color:var(--color-ink)]"
+                      }`}
                     >
-                      <span
-                        className={`num text-[10px] transition-colors ${
-                          on
-                            ? "text-[color:var(--color-blue)]"
-                            : "text-[color:var(--color-ink-4)]"
-                        }`}
-                      >
-                        {s.n}
-                      </span>
-                      <span
-                        className={`text-[13.5px] transition-colors ${
-                          on
-                            ? "text-[color:var(--color-ink)]"
-                            : "text-[color:var(--color-ink-3)] group-hover:text-[color:var(--color-ink)]"
-                        }`}
-                      >
-                        {s.label}
-                      </span>
+                      {s.label}
                     </a>
                   </li>
                 );
@@ -103,27 +88,12 @@ export function Nav() {
 
           <a
             href="#access"
-            className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-[color:var(--color-ink)] px-5 text-[13.5px] font-medium text-[color:var(--color-paper)] transition-opacity hover:opacity-85"
+            className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-[color:var(--color-blue)] px-5 text-[13.5px] font-medium text-white transition-colors hover:bg-[color:var(--color-blue-deep)]"
           >
             Request access
           </a>
         </div>
       </header>
     </>
-  );
-}
-
-/** Section marker — mono index + rule. Structural, like a document. */
-export function Marker({ n, label, dark }: { n: string; label: string; dark?: boolean }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className={`num text-[11px] ${dark ? "text-[color:var(--color-chalk-3)]" : "text-[color:var(--color-ink-4)]"}`}>
-        {n}
-      </span>
-      <span className={`h-px w-8 ${dark ? "bg-[color:var(--color-rule-dark)]" : "bg-[color:var(--color-rule)]"}`} />
-      <span className={`mono ${dark ? "text-[color:var(--color-chalk-3)]" : "text-[color:var(--color-ink-3)]"}`}>
-        {label}
-      </span>
-    </div>
   );
 }

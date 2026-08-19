@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 /**
  * Entrance. Motion's `whileInView` handles the observer, and `once` keeps it
- * from replaying on scroll-back — repeated animation is what makes a page feel
+ * from replaying on scroll-back, repeated animation is what makes a page feel
  * like a demo reel rather than a document.
  */
 export function Rise({

@@ -2,7 +2,7 @@
 
 import { useId, useRef, useState } from "react";
 
-export function Access({ dark }: { dark?: boolean }) {
+export function Access({ dark, pill }: { dark?: boolean; pill?: boolean }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "busy" | "ok" | "err">("idle");
   const [msg, setMsg] = useState("");
@@ -50,12 +50,70 @@ export function Access({ dark }: { dark?: boolean }) {
     );
   }
 
+  if (pill) {
+    return (
+      <form onSubmit={submit} noValidate>
+        <label htmlFor={id} className="sr-only">
+          Email address
+        </label>
+
+        <div className="flex w-full max-w-[26rem] items-center gap-2 rounded-full bg-white py-2 pl-6 pr-2 shadow-[0_1px_2px_rgba(6,24,43,0.25)]">
+          <input
+            ref={ref}
+            id={id}
+            type="email"
+            name="email"
+            autoComplete="email"
+            inputMode="email"
+            placeholder="you@yourfirm.com"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (state === "err") setState("idle");
+            }}
+            aria-invalid={state === "err"}
+            aria-describedby={note}
+            disabled={state === "busy"}
+            className="min-h-[40px] w-full bg-transparent text-[15.5px] text-[color:var(--color-ink)] outline-none placeholder:text-[color:var(--color-ink-4)]"
+          />
+          <button
+            type="submit"
+            disabled={state === "busy"}
+            aria-label="Request access"
+            className="grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-[color:var(--color-blue)] text-white transition-colors hover:bg-[color:var(--color-blue-deep)] disabled:opacity-40"
+          >
+            <svg viewBox="0 0 16 16" className="size-[15px]" aria-hidden="true">
+              <path
+                d="M4 12L12 4M12 4H5.5M12 4v6.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <p
+          id={note}
+          aria-live="polite"
+          className={`mt-4 pl-1 text-[13.5px] ${
+            state === "err" ? "text-[#ff8a9b]" : "text-[color:var(--color-chalk-3)]"
+          }`}
+        >
+          {state === "err" ? msg : "US attorneys. Invites go out in small batches."}
+        </p>
+      </form>
+    );
+  }
+
   return (
     <form onSubmit={submit} noValidate>
       <label htmlFor={id} className="sr-only">
         Email address
       </label>
-      {/* An underline, not a boxed input — the form should read as a line of
+      {/* An underline, not a boxed input, the form should read as a line of
           type on the page rather than a widget dropped onto it. */}
       <div className={`flex items-center gap-3 border-b ${line} pb-2 transition-colors focus-within:border-current`}>
         <input
@@ -79,7 +137,9 @@ export function Access({ dark }: { dark?: boolean }) {
         <button
           type="submit"
           disabled={state === "busy"}
-          className={`min-h-[44px] shrink-0 cursor-pointer whitespace-nowrap text-[15px] font-medium ${text} transition-opacity hover:opacity-60 disabled:opacity-40`}
+          className={`min-h-[44px] shrink-0 cursor-pointer whitespace-nowrap text-[15px] font-medium transition-opacity hover:opacity-60 disabled:opacity-40 ${
+            dark ? "text-[color:var(--color-ios-2)]" : "text-[color:var(--color-blue)]"
+          }`}
         >
           {state === "busy" ? "Sending…" : "Request access →"}
         </button>
