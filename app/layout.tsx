@@ -1,52 +1,34 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
-import { SmoothAnchors } from "@/components/SmoothAnchors";
+import { Inter, Inter_Tight, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-/**
- * Flip this one line to swap the whole site's sans. Both faces load as CSS
- * variables; only the active one is bound to --f-sans, which is what
- * globals.css reads for --font-sans.
- */
-const SANS: "jakarta" | "geist" = "geist";
-
-const geist = Geist({ subsets: ["latin"], variable: "--f-geist", display: "swap" });
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--f-jakarta", display: "swap" });
+/* Body / UI — clean, neutral, legible at any size. */
+const sans = Inter({ subsets: ["latin"], variable: "--f-sans", display: "swap" });
+/* Display — the refined grotesque used across premium legal/AI products.
+   Tighter and more assertive than Inter for large headlines. */
+const display = Inter_Tight({ subsets: ["latin"], variable: "--f-display", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--f-mono", display: "swap" });
 
-const title = "Jural | Your whole practice, in one thread";
+const title = "Jural — The Legal CRM Built for Attorneys";
 const description =
-  "An AI pocket CRM for solo attorneys and small legal teams. Say what happened and Jural writes the time entry, drafts the letter, builds the invoice. The model runs on your iPhone, so client matters never leave the phone.";
+  "Jural combines a premium legal CRM with AI agents that draft, bill, and follow up on matters, so your practice spends less time on admin and more time on clients.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jural.app"),
   title,
   description,
-  openGraph: { title, description, type: "website", siteName: "Jural", locale: "en_US" },
-  twitter: { card: "summary_large_image", title, description },
+  openGraph: { title, description, type: "website", siteName: "Jural" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbfaf8",
+  themeColor: "#0e82e8",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${geist.variable} ${jakarta.variable} ${mono.variable}`}
-      style={
-        {
-          "--f-sans": SANS === "jakarta" ? "var(--f-jakarta)" : "var(--f-geist)",
-        } as React.CSSProperties
-      }
-    >
-      <body>
-        <SmoothAnchors />
-        {children}
-      </body>
+    <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
