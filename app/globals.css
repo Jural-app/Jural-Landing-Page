@@ -1,215 +1,69 @@
 @import "tailwindcss";
 
 /* ==========================================================
-   JURAL v2
-   Editorial and technical. The product is the visual system:
-   every graphic on this page is real, coded app UI.
-   No glass, no aurora, no gradient text, no icon-card grids.
+   JURAL — fresh build
+   Brand palette sampled directly from the Jural mark:
+   a blue gradient from bright cyan through azure to deep blue.
    ========================================================== */
 
 @theme {
-  /* ---- Canvas -----------------------------------------------
-     Warm off-white, so the true-black product screenshots read as
-     a different material rather than a lighter shade of the page. */
-  --color-paper: #fbfaf8;
-  --color-paper-2: #f2efea; /* recessed light band */
+  /* ---- Brand blue (from the logo) --------------------------- */
+  --color-brand: #0e82e8;        /* primary — core of the mark */
+  --color-brand-deep: #0670d6;   /* pressed / gradient anchor */
+  --color-brand-dark: #0562c0;   /* deepest blue at the base of the mark */
+  --color-brand-bright: #38c0f8; /* bright cyan highlight */
+  --color-brand-wash: #eaf3fd;   /* pale tinted fill */
+  --color-paper-blue: #c0e8f8;   /* paper highlight in the mark */
 
-  /* ---- Dark bands -------------------------------------------
-     Navy, not neutral black. Sampled down from the mark's deep
-     azure so the dark stretches belong to the same family as the
-     blue rather than reading as a separate monochrome system. */
-  --color-theatre: #06182b;
-  --color-theatre-2: #0a2438;
+  /* ---- Neutrals --------------------------------------------- */
+  --color-ink: #0e1524;          /* near-black headings/text */
+  --color-ink-2: #4a5567;        /* secondary text */
+  --color-ink-3: #6b7688;        /* muted text */
+  --color-line: rgba(14, 21, 36, 0.09);
 
-  /* ---- Ink ---------------------------------------------------
-     Near-black with a blue cast, not neutral grey. */
-  --color-ink: #0e1116;
-  --color-ink-2: #38424e;
-  --color-ink-3: #56616e;   /* AA on paper */
-  --color-ink-4: #616c79;   /* AA on paper and paper-2 */
+  --color-paper: #ffffff;
 
-  --color-chalk: #f2f6fa;   /* text on the navy bands */
-  --color-chalk-2: #a7b6c6;
-  --color-chalk-3: #7e8ea0;  /* AA on every dark band */
+  --color-canvas: #f6f6f4;       /* warm off-white hero canvas */
 
-  /* ---- Blue --------------------------------------------------
-     The identity, not an accent held in reserve. `blue` is the one
-     that carries white text and sits under text; azure and cyan are
-     decorative only, #0a80e7 is 4.00:1 on white and fails AA. */
-  --color-blue: #0c6fc4;     /* primary, CTA, links, marks */
-  --color-blue-deep: #0667be; /* pressed / gradient anchor */
-  --color-blue-wash: #eaf2fb; /* tinted fill on paper */
-  /* Surfaces the coded app UI sits on. Blue-tinted rather than neutral grey so
-     the product furniture belongs to the same family as everything else. */
-  --color-surface: #f3f7fc;      /* the screen behind the white cells */
-  --color-surface-deep: #e2eaf4; /* the panel the screen sits in */
-  --color-surface-fill: #e8eff8; /* inline value pills inside the UI */
-  --color-azure: #0a80e7;    /* decorative */
-  --color-ios: #0a84ff;      /* the app's own blue, in-product UI only */
-  /* Filled surfaces that carry white text use a fractionally deeper blue:
-     white on #0a84ff is 3.65:1. Visually indistinguishable, but legible. */
-  --color-ios-deep: #0a6fd8;
-  --color-ios-2: #45c8fb;    /* cyan, gradients and glow only */
-
-  --color-rule: rgba(14, 17, 22, 0.11);
-  --color-rule-dark: rgba(168, 200, 232, 0.16);
-
-  --font-sans: var(--f-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--f-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--f-display), var(--f-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--f-mono), ui-monospace, "SF Mono", monospace;
-
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
-    /* Proximity, not mandatory: only elements that opt in with a snap-align
-       are targets, so the rest of the page scrolls normally. */
-    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
   }
   body {
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 1rem;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* clip, not hidden: `overflow-x: hidden` computes overflow-y to auto,
-       which turns body into a scroll container and breaks position: sticky
-       for everything inside it. `clip` contains overflow without that. */
     overflow-x: clip;
   }
   ::selection {
-    background: var(--color-blue);
+    background: var(--color-brand);
     color: #fff;
   }
   :focus-visible {
-    outline: 2px solid var(--color-blue);
+    outline: 2px solid var(--color-brand);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 }
+
 
 @layer components {
-  /* ---- Type -------------------------------------------------
-     Display sits at very tight tracking with a low, deliberate
-     line-height, the difference between "big text" and typeset. */
-  .d1 {
-    font-size: clamp(2.9rem, 1rem + 7.2vw, 6.4rem);
-    line-height: 0.95;
-    letter-spacing: -0.045em;
-    font-weight: 500;
-  }
-  .d2 {
-    font-size: clamp(2.1rem, 1.1rem + 4.2vw, 4rem);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    font-weight: 500;
-  }
-  .d3 {
-    font-size: clamp(1.5rem, 1.1rem + 1.7vw, 2.15rem);
-    line-height: 1.12;
+  /* Big editorial display headline — tight tracking, low line-height,
+     the difference between "large text" and typeset. */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.15rem, 1rem + 3.3vw, 4.1rem);
+    line-height: 1.02;
     letter-spacing: -0.03em;
-    font-weight: 500;
   }
-  .lead {
-    font-size: clamp(1.05rem, 0.98rem + 0.45vw, 1.28rem);
-    line-height: 1.5;
-    letter-spacing: -0.014em;
-    color: var(--color-ink-2);
-  }
-  .body {
-    font-size: 1.0625rem;
-    line-height: 1.6;
-    letter-spacing: -0.008em;
-    color: var(--color-ink-2);
-  }
-  .small {
-    font-size: 0.9375rem;
-    line-height: 1.55;
-    color: var(--color-ink-3);
-  }
-
-  /* Mono is structural here, section numbers, file refs, timestamps.
-     It annotates the page like a document, not decoration. */
-  .mono {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-  .num {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.01em;
-  }
-
-  .wrap {
-    width: 100%;
-    max-width: 1240px;
-    margin-inline: auto;
-    padding-inline: 22px;
-  }
-  @media (min-width: 900px) {
-    .wrap {
-      padding-inline: 44px;
-    }
-  }
-
-  /* Hairline rules do the structural work that cards did in v1 */
-  .rule {
-    border-top: 1px solid var(--color-rule);
-  }
-  .rule-d {
-    border-top: 1px solid var(--color-rule-dark);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  html {
-    scroll-snap-type: none;
-  }
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 0.35; transform: translateY(0); }
-  50%      { opacity: 1;    transform: translateY(-2px); }
-}
-
-/* Above-the-fold entrance.
-   Pure CSS so the hero, and the LCP heading, paints from server HTML
-   without waiting on hydration or on motion's whileInView observer. */
-@keyframes rise-in {
-  from { opacity: 0; transform: translate3d(0, 16px, 0); }
-  to   { opacity: 1; transform: none; }
-}
-.rise-now {
-  animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: var(--rise-delay, 0ms);
-}
-@media (prefers-reduced-motion: reduce) {
-  .rise-now { animation: none; }
-}
-
-/* Ticker. Two identical copies sit side by side and the pair slides exactly
-   half its width, so the loop point is invisible. */
-@keyframes marquee {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-50%, 0, 0); }
-}
-.marquee {
-  animation: marquee 42s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee { animation: none; }
 }
