@@ -59,8 +59,8 @@ export function Nav() {
             className="inline-flex min-h-11 shrink-0 items-center gap-2"
             aria-label="Jural, home"
           >
-            <Image src="/brand/jural-mark.png" alt="" width={24} height={30} priority />
-            <span className="text-[21px] font-semibold tracking-[-0.04em]">Jural</span>
+            <Image src="/brand/Jural.png" alt="" width={32} height={32} priority />
+            <span className="text-[24px] font-semibold tracking-[-0.04em]">Jural</span>
           </a>
 
           <nav aria-label="Sections" className="hidden md:block">

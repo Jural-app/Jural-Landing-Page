@@ -14,6 +14,13 @@ import {
   TeamUI,
 } from "./FeatureUI";
 
+/** Panel ground for the coded screens. */
+const PANEL = {
+  backgroundImage: "url('/brand/features-bg.webp')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+};
+
 /**
  * The list on the left is read by scrolling, not clicking: whichever item sits
  * nearest the middle of the viewport becomes active, and the pinned panel on
@@ -122,7 +129,7 @@ export function Features() {
 
         <a
           href="#access"
-          className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-[color:var(--color-ink)]/20 px-5 py-2.5 text-[14px] font-medium transition-colors hover:border-[color:var(--color-ink)]/45"
+          className="group inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-[color:var(--color-ink)]/20 px-5 text-[14px] font-medium transition-colors hover:border-[color:var(--color-ink)]/45"
         >
           Request access
           <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
@@ -133,7 +140,7 @@ export function Features() {
 
       <div className="mt-16 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)] lg:gap-16">
         {/* the list is the scrub track */}
-        <ul>
+        <ul className="min-w-0">
           {ITEMS.map((it, i) => {
             const on = i === active;
             return (
@@ -142,13 +149,13 @@ export function Features() {
                 ref={(el) => {
                   refs.current[i] = el;
                 }}
-                className="relative border-t border-[color:var(--color-rule)] py-10 pl-8 lg:flex lg:min-h-[58vh] lg:flex-col lg:justify-center lg:py-12"
+                className="relative border-t border-[color:var(--color-rule)] py-10 pl-8 lg:flex lg:min-h-[58vh] lg:snap-center lg:snap-always lg:flex-col lg:justify-center lg:py-12"
               >
                 {/* active marker rides the rule */}
                 <motion.span
                   aria-hidden="true"
                   animate={{ opacity: on ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.45 }}
                   className="absolute left-0 top-10 bottom-10 w-[2px] rounded-full bg-[color:var(--color-blue)] lg:top-12 lg:bottom-12"
                 />
 
@@ -158,7 +165,7 @@ export function Features() {
                     fill="none"
                     initial={{ stroke: "var(--color-ink-4)" }}
                     animate={{ stroke: on ? "var(--color-blue)" : "var(--color-ink-4)" }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.45 }}
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -167,7 +174,7 @@ export function Features() {
 
                 <motion.h3
                   animate={{ color: on ? "var(--color-ink)" : "var(--color-ink-2)" }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.45 }}
                   className="mt-5 text-[clamp(1.45rem,1.1rem+1vw,1.95rem)] font-medium leading-[1.15] tracking-[-0.03em]"
                 >
                   {it.t}
@@ -178,7 +185,7 @@ export function Features() {
                 </p>
 
                 {/* below lg nothing can pin, so each item carries its own screen */}
-                <div className="mt-7 overflow-hidden rounded-2xl bg-[color:var(--color-surface-deep)] p-5 lg:hidden">
+                <div className="mt-7 overflow-hidden rounded-2xl p-5 lg:hidden" style={PANEL}>
                   {it.ui}
                 </div>
               </li>
@@ -187,16 +194,19 @@ export function Features() {
         </ul>
 
         {/* pinned screen */}
-        <div className="hidden lg:block">
+        <div className="hidden min-w-0 lg:block">
           <div className="sticky top-[max(6rem,calc(50vh-250px))]">
-            <div className="mx-auto grid h-[calc(100vh-16rem)] max-h-[500px] min-h-[400px] w-full max-w-[464px] place-items-center overflow-hidden rounded-2xl bg-[color:var(--color-surface-deep)] p-6">
+            <div
+              className="mx-auto grid h-[calc(100vh-16rem)] max-h-[500px] min-h-[400px] w-full max-w-[464px] place-items-center overflow-hidden rounded-2xl p-6"
+              style={PANEL}
+            >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active}
-                  initial={reduce ? false : { opacity: 0, y: 14 }}
+                  initial={reduce ? false : { opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? undefined : { opacity: 0, y: -10 }}
-                  transition={{ duration: 0.34, ease: [0.16, 1, 0.3, 1] }}
+                  exit={reduce ? undefined : { opacity: 0, y: -14 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {ITEMS[active].ui}
                 </motion.div>

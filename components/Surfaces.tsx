@@ -32,7 +32,7 @@ export function Surfaces() {
   return (
     <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
       {/* panel */}
-      <div className="order-2 grid min-h-[420px] place-items-center overflow-hidden rounded-2xl bg-[color:var(--color-surface-deep)] p-6 md:min-h-[500px] md:p-10 lg:order-1">
+      <div className="order-2 grid min-w-0 min-h-[420px] place-items-center overflow-hidden rounded-2xl bg-[color:var(--color-surface-deep)] p-6 md:min-h-[500px] md:p-10 lg:order-1">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={active}
@@ -56,7 +56,7 @@ export function Surfaces() {
       </div>
 
       {/* copy + selector */}
-      <div className="order-1 lg:order-2">
+      <div className="order-1 min-w-0 lg:order-2">
         <h2 className="d2 max-w-[13ch]">Capture on the phone. Finish at the desk.</h2>
 
         <ul className="mt-12 border-t border-[color:var(--color-rule)]">

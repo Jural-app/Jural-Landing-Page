@@ -16,7 +16,9 @@ const BLUE = "var(--color-blue)";
 function Screen({ children }: { children: React.ReactNode }) {
   // Fixed width so every fragment crops identically at its cell edge.
   return (
-    <div className="w-[392px] max-w-none rounded-2xl bg-[color:var(--color-surface)] p-3.5">{children}</div>
+    <div className="w-full max-w-[392px] rounded-2xl bg-[color:var(--color-surface)] p-3.5">
+      {children}
+    </div>
   );
 }
 

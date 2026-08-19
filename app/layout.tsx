@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { SmoothAnchors } from "@/components/SmoothAnchors";
 import "./globals.css";
 
 /**
@@ -42,7 +43,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         } as React.CSSProperties
       }
     >
-      <body>{children}</body>
+      <body>
+        <SmoothAnchors />
+        {children}
+      </body>
     </html>
   );
 }

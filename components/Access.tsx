@@ -80,7 +80,7 @@ export function Access({ dark, pill }: { dark?: boolean; pill?: boolean }) {
             type="submit"
             disabled={state === "busy"}
             aria-label="Request access"
-            className="grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-[color:var(--color-blue)] text-white transition-colors hover:bg-[color:var(--color-blue-deep)] disabled:opacity-40"
+            className="grid size-11 shrink-0 cursor-pointer place-items-center rounded-full bg-[color:var(--color-blue)] text-white transition-colors hover:bg-[color:var(--color-blue-deep)] disabled:opacity-40"
           >
             <svg viewBox="0 0 16 16" className="size-[15px]" aria-hidden="true">
               <path

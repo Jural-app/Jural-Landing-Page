@@ -88,11 +88,11 @@ export function Statement() {
           transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
         >
           <Image
-            src="/brand/jural-mark.png"
+            src="/brand/Jural.png"
             alt=""
-            width={38}
+            width={48}
             height={48}
-            className="w-[33px] md:w-[36px]"
+            className="w-[42px] md:w-[46px]"
           />
         </motion.span>
       </motion.div>

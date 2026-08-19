@@ -1,13 +1,14 @@
 import Image from "next/image";
 
 /**
- * Full-bleed two-panel footer: oversized section links and a CTA on the left,
- * the mark debossed into a recessed panel on the right, one legal bar across
- * the whole width. No container, no card, the panels run to the viewport edge
- * and the split itself is the only structure.
+ * Full-bleed two-panel footer: the section list and a CTA on the left, the mark
+ * debossed into a recessed panel on the right, one legal bar across the whole
+ * width. No container, no card, the panels run to the viewport edge and the
+ * split itself is the only structure.
  *
- * The big links are in-page anchors, not routes, this is a one-page site, and
- * a footer full of invented destinations reads as filler.
+ * Only the section list and the CTA are links. Everything else is plain text
+ * until the pages behind it exist, because a link to nowhere is worse than no
+ * link at all.
  */
 
 const BIG = [
@@ -29,23 +30,10 @@ const IN_THE_APP = [
   "Reminders",
 ];
 
-// TODO: real URLs, these are placeholders until the pages exist.
-const COMPANY = [
-  { href: "mailto:hello@jural.app", label: "Contact us" },
-  { href: "#", label: "Privacy Policy" },
-  { href: "#", label: "Terms of Service" },
-];
-
-const LEGAL = [
-  { href: "#", label: "Privacy Policy" },
-  { href: "#", label: "Terms of Service" },
-  { href: "#", label: "Security" },
-];
-
-const SOCIAL = [
-  { href: "#", label: "LinkedIn" },
-  { href: "#", label: "X" },
-];
+// Plain text for now. Give these real URLs and they can become links again.
+const COMPANY = ["Contact us", "Privacy Policy", "Terms of Service"];
+const LEGAL = ["Privacy Policy", "Terms of Service", "Security"];
+const SOCIAL = ["LinkedIn", "X"];
 
 /** Matches `.wrap`'s inline padding so the footer lines up with the page above. */
 const PAD = "px-[22px] [@media(min-width:900px)]:px-11";
@@ -62,7 +50,7 @@ export function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="block text-[clamp(1.9rem,1.1rem+2.3vw,3.05rem)] font-semibold leading-[1.18] tracking-[-0.035em] text-[color:var(--color-ink)] transition-colors hover:text-[color:var(--color-blue)]"
+                    className="block py-1.5 text-[clamp(1.9rem,1.1rem+2.3vw,3.05rem)] font-semibold leading-[1.18] tracking-[-0.035em] text-[color:var(--color-ink)] transition-colors hover:text-[color:var(--color-blue)]"
                   >
                     {l.label}
                   </a>
@@ -86,14 +74,9 @@ export function Footer() {
             <div>
               <p className="mono text-[color:var(--color-ink-4)]">Company</p>
               <ul className="mt-5 space-y-2.5">
-                {COMPANY.map((l) => (
-                  <li key={l.label}>
-                    <a
-                      href={l.href}
-                      className="text-[13.5px] text-[color:var(--color-ink-2)] transition-colors hover:text-[color:var(--color-blue)]"
-                    >
-                      {l.label}
-                    </a>
+                {COMPANY.map((t) => (
+                  <li key={t} className="text-[13.5px] text-[color:var(--color-ink-2)]">
+                    {t}
                   </li>
                 ))}
               </ul>
@@ -127,11 +110,11 @@ export function Footer() {
           className="relative hidden overflow-hidden border-l border-[color:var(--color-rule)] bg-[color:var(--color-paper-2)] lg:block"
         >
           <Image
-            src="/brand/jural-mark.png"
+            src="/brand/Jural.png"
             alt=""
-            width={520}
-            height={660}
-            className="pointer-events-none absolute bottom-8 right-8 w-[58%] max-w-[360px] select-none"
+            width={560}
+            height={560}
+            className="pointer-events-none absolute bottom-8 right-8 w-[68%] max-w-[430px] select-none"
           />
         </div>
       </div>
@@ -142,27 +125,19 @@ export function Footer() {
       >
         <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
           <span>All rights reserved © {new Date().getFullYear()} Jural</span>
-          {LEGAL.map((l) => (
-            <span key={l.label} className="flex items-center gap-2.5">
+          {LEGAL.map((t) => (
+            <span key={t} className="flex items-center gap-2.5">
               <span aria-hidden="true" className="text-[color:var(--color-ink-4)]/45">
                 ·
               </span>
-              <a href={l.href} className="transition-colors hover:text-[color:var(--color-blue)]">
-                {l.label}
-              </a>
+              {t}
             </span>
           ))}
         </div>
 
         <div className="flex flex-wrap items-center gap-x-5">
-          {SOCIAL.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className="transition-colors hover:text-[color:var(--color-blue)]"
-            >
-              {l.label}
-            </a>
+          {SOCIAL.map((t) => (
+            <span key={t}>{t}</span>
           ))}
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 /* ==========================================================
    JURAL v2
-   Editorial–technical. The product is the visual system:
+   Editorial and technical. The product is the visual system:
    every graphic on this page is real, coded app UI.
    No glass, no aurora, no gradient text, no icon-card grids.
    ========================================================== */
@@ -57,12 +57,15 @@
   --font-sans: var(--f-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--f-mono), ui-monospace, "SF Mono", monospace;
 
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    /* Proximity, not mandatory: only elements that opt in with a snap-align
+       are targets, so the rest of the page scrolls normally. */
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
   }
   body {
     background: var(--color-paper);
@@ -72,7 +75,10 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /* clip, not hidden: `overflow-x: hidden` computes overflow-y to auto,
+       which turns body into a scroll container and breaks position: sticky
+       for everything inside it. `clip` contains overflow without that. */
+    overflow-x: clip;
   }
   ::selection {
     background: var(--color-blue);
@@ -169,6 +175,9 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  html {
+    scroll-snap-type: none;
   }
 }
 

@@ -51,7 +51,7 @@ export function Faq() {
     <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.5fr)] lg:gap-20">
       <h2 className="d2 max-w-[11ch]">Frequently asked questions</h2>
 
-      <div className="border-t border-[color:var(--color-rule)]">
+      <div className="min-w-0 border-t border-[color:var(--color-rule)]">
         {QA.map((item, i) => (
           <details
             key={item.q}
