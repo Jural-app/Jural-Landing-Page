@@ -20,8 +20,8 @@ export function Hero() {
       >
         {/* Heading */}
         <h1 className="display text-white">
-          Inspired By Lawyers<br />
-          Refined For Practice
+          Forget Traditional CRM.<br />
+          Just Start Talking.
         </h1>
 
         {/* iPhone frame — pinned to bottom, peeks up, clipped by the panel edge */}
