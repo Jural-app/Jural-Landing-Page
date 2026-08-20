@@ -1,19 +1,25 @@
 @import "tailwindcss";
 
 /* ==========================================================
-   JURAL — fresh build
+   JURAL: fresh build
    Brand palette sampled directly from the Jural mark:
    a blue gradient from bright cyan through azure to deep blue.
    ========================================================== */
 
 @theme {
   /* ---- Brand blue (from the logo) --------------------------- */
-  --color-brand: #0e82e8;        /* primary — core of the mark */
+  --color-brand: #0e82e8;        /* primary, core of the mark */
   --color-brand-deep: #0670d6;   /* pressed / gradient anchor */
   --color-brand-dark: #0562c0;   /* deepest blue at the base of the mark */
   --color-brand-bright: #38c0f8; /* bright cyan highlight */
   --color-brand-wash: #eaf3fd;   /* pale tinted fill */
   --color-paper-blue: #c0e8f8;   /* paper highlight in the mark */
+
+  /* Deep end of the same 210 hue, for inverted bands where white type sits on
+     blue. brand-dark was the previous floor at 39% lightness, still too light
+     to carry body copy comfortably. */
+  --color-navy: #094c90;         /* one step below brand-dark */
+  --color-navy-deep: #05294d;    /* deepest, closes the page */
 
   /* ---- Neutrals --------------------------------------------- */
   --color-ink: #0e1524;          /* near-black headings/text */
@@ -24,6 +30,7 @@
   --color-paper: #ffffff;
 
   --color-canvas: #f6f6f4;       /* warm off-white hero canvas */
+  --color-canvas-deep: #edece8;  /* warm grey panel, visual wells on white */
 
   --font-sans: var(--f-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: var(--f-display), var(--f-sans), ui-sans-serif, system-ui, sans-serif;
@@ -57,7 +64,7 @@
 
 
 @layer components {
-  /* Big editorial display headline — tight tracking, low line-height,
+  /* Big editorial display headline: tight tracking, low line-height,
      the difference between "large text" and typeset. */
   .display {
     font-family: var(--font-display);
@@ -66,4 +73,29 @@
     line-height: 1.02;
     letter-spacing: -0.03em;
   }
+}
+
+/* ==========================================================
+   Architecture stack (How it works). Pure CSS so the section
+   stays a server component: no client JS for the animation.
+   ========================================================== */
+
+@keyframes jural-rise {
+  0%        { transform: translateZ(10px)  scale(0.88); opacity: 0; }
+  10%       { opacity: 1; }
+  42%, 62%  { transform: translateZ(238px) scale(1);    opacity: 1; }
+  74%, 100% { transform: translateZ(238px) scale(1);    opacity: 0; }
+}
+
+/* ciphertext crossing the relay, never resting on it */
+@keyframes jural-stream {
+  from { background-position: 0 0; }
+  to   { background-position: 96px 0; }
+}
+
+.jural-rise   { animation: jural-rise 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+.jural-stream { animation: jural-stream 3s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jural-rise, .jural-stream { animation: none; }
 }

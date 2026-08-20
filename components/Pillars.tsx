@@ -20,7 +20,7 @@ const PANELS = [
   },
   {
     t: "Every case is a conversation",
-    d: "Open a matter and simply message it. Ask for case information, add notes, schedule tasks, create documents, or find what you need — all through a familiar chat-style experience designed to feel natural from the first use.",
+    d: "Open a matter and simply message it. Ask for case information, add notes, schedule tasks, create documents, or find what you need, all through a familiar chat-style experience designed to feel natural from the first use.",
     art: <LuMessagesSquare className={ICON} strokeWidth={1.4} aria-hidden="true" />,
     bg: "bg-[#0763b7]", // deep brand blue
     fg: "text-white",

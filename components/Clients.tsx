@@ -1,5 +1,5 @@
 /**
- * Clients — compact "Trusted by" bar directly below the hero.
+ * Clients: compact "Trusted by" bar directly below the hero.
  * Label on the left, a few client wordmarks on the right. Tight spacing.
  */
 const CLIENTS = ["Marbrook", "Northgate", "Pearce Legal"];

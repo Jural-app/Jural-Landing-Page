@@ -1,37 +1,33 @@
 import Image from "next/image";
 
 /**
- * Trust — security / recognition section.
+ * Trust: security and recognition section.
  * Left: G2 badge + live status (uptime) card. Right: security copy.
  * Balanced margins, generous whitespace.
  *
  * Links point to the real domains:
- *   trust.jural.app  — Trust Center
- *   status.jural.app — API / system status
+ *   trust.jural.app  : Trust Center
+ *   status.jural.app : API and system status
  */
 export function Trust() {
   return (
-    <section className="bg-white">
+    <section id="security" className="bg-white">
       <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-32">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          {/* Left — G2 badge, centered in its column */}
+          {/* Left: G2 badge, centered in its column */}
           <div className="flex justify-center">
             <Image
               src="/g2-badge.png"
-              alt="G2 Best Software 2026 — Top 25 Legal Products"
+              alt="G2 Best Software 2026, Top 25 Legal Products"
               width={868}
               height={1000}
               className="h-[196px] w-auto"
             />
           </div>
 
-          {/* Right — security copy */}
+          {/* Right: security copy */}
           <div className="text-center lg:text-left">
-            <div className="mb-5 inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="4" y="11" width="16" height="9" rx="2" />
-                <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-              </svg>
+            <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">
               Security
             </div>
 

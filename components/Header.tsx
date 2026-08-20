@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NAV = [
   { label: "Home", href: "#" },
@@ -31,9 +31,40 @@ function ArrowBadge() {
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+
+  /**
+   * Hide on the way down, come back on the way up. Kept sticky rather than
+   * static so the demo CTA is always one upward flick away, instead of only
+   * reachable by scrolling to the top of the page.
+   */
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY.current;
+
+      // ignore sub-pixel jitter, which otherwise flickers the bar
+      if (Math.abs(delta) < 5) return;
+
+      // never hide at the very top, and never hide with the menu open
+      if (y < 90 || open) setHidden(false);
+      else setHidden(delta > 0);
+
+      lastY.current = y;
+    };
+
+    lastY.current = window.scrollY;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [open]);
 
   return (
-    <header className="sticky top-0 z-50">
+    <header
+      className={`sticky top-0 z-50 transition-transform duration-300 ease-out motion-reduce:transition-none ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       {/* ---- Announcement bar --------------------------------- */}
       <div
         className="w-full text-white"
