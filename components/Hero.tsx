@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 /**
- * Hero: a rounded inset panel filled with the blue gradient background.
+ * Hero: a rounded inset panel filled with the blue background image.
  * Heading at the top, animated iPhone notification GIF peeking from the bottom.
  *
  * ▸ HEIGHT: fixed to one viewport minus the sticky header, so the whole hero
@@ -14,8 +14,7 @@ export function Hero() {
         className="relative flex w-full flex-col items-center justify-start overflow-hidden rounded-[32px] px-6 pt-12 text-center sm:rounded-[44px] sm:pt-16"
         style={{
           height: "calc(100dvh - 160px)",
-          background:
-            "radial-gradient(135% 135% at 0% 0%, #26C9FA 0%, #1290D5 44%, #0763B7 100%)",
+          background: "url('/hero-bg.jpg') center/cover no-repeat",
         }}
       >
         {/* Heading */}

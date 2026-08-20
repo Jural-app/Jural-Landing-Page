@@ -99,7 +99,7 @@ export function Conversation() {
         <div className="relative flex h-[620px] flex-col overflow-hidden rounded-xl sm:h-[740px]">
           {/* Rich background, the counterpart to the reference's scenic card */}
           <Image
-            src="/screens/card-bg-blue.jpg"
+            src="/hero-bg.jpg"
             alt=""
             fill
             aria-hidden="true"

@@ -4,7 +4,6 @@ import { Problem } from "@/components/Problem";
 import { Pillars } from "@/components/Pillars";
 import { Conversation } from "@/components/Conversation";
 import { Features } from "@/components/Features";
-import { Architecture } from "@/components/Architecture";
 import { Trust } from "@/components/Trust";
 import { Start } from "@/components/Start";
 import { Faq } from "@/components/Faq";
@@ -20,7 +19,6 @@ export default function Home() {
       <Pillars />
       <Conversation />
       <Features />
-      <Architecture />
       <Trust />
       <Start />
       <Faq />
