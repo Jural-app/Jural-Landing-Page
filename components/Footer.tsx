@@ -17,8 +17,11 @@ const BIG = [
   { href: "#solution", label: "Our solution" },
   { href: "#features", label: "What it does" },
   { href: "#security", label: "Security" },
-  { href: "#demo", label: "Get a demo" },
+  { href: "/demo", label: "Get a demo" },
 ];
+
+const BIG_LINK =
+  "block py-1.5 text-[clamp(1.9rem,1.1rem+2.3vw,3.05rem)] font-semibold leading-[1.18] tracking-[-0.035em] text-[var(--color-ink)] transition-colors hover:text-[var(--color-brand)] [font-family:var(--font-display)]";
 
 const IN_THE_APP = [
   "Cases and matters",
@@ -56,12 +59,13 @@ export function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="block py-1.5 text-[clamp(1.9rem,1.1rem+2.3vw,3.05rem)] font-semibold leading-[1.18] tracking-[-0.035em] text-[var(--color-ink)] transition-colors hover:text-[var(--color-brand)] [font-family:var(--font-display)]"
+                    className={BIG_LINK}
                   >
                     {l.label}
                   </a>
                 </li>
               ))}
+
             </ul>
           </nav>
 
@@ -115,7 +119,7 @@ export function Footer() {
             </p>
 
             <a
-              href="#demo"
+              href="/demo"
               className="group inline-flex items-center rounded-full bg-[var(--color-brand)] text-[14px] font-medium text-white transition-colors hover:bg-[var(--color-brand-deep)]"
             >
               <span className="py-3 pl-5 pr-4">Get 14 Days Demo</span>

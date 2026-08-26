@@ -122,7 +122,7 @@ export function Features() {
           </div>
 
           <a
-            href="#demo"
+            href="/demo"
             className="group inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-[rgba(14,21,36,0.2)] px-5 text-[14px] font-medium text-[var(--color-ink)] transition-colors hover:border-[rgba(14,21,36,0.45)]"
           >
             Get 14 Days Demo

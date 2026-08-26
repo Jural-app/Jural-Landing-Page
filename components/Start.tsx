@@ -100,7 +100,7 @@ export function Start() {
             </p>
 
             <a
-              href="#demo"
+              href="/demo"
               className="mt-9 ml-auto inline-flex w-fit items-center rounded-full bg-white px-7 py-3.5 text-[14.5px] font-semibold text-[var(--color-ink)] transition-colors hover:bg-white/90"
             >
               Get 14 Days Demo

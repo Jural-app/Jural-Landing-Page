@@ -4,16 +4,17 @@ import Image from "next/image";
  * Hero: a rounded inset panel filled with the blue background image.
  * Heading at the top, animated iPhone notification GIF peeking from the bottom.
  *
- * ▸ HEIGHT: fixed to one viewport minus the sticky header, so the whole hero
+ * ▸ HEIGHT: from sm up, one viewport minus the sticky header, so the whole hero
  *   is visible on a 13" screen without scrolling; the phone clips at the edge.
+ *   On phones a viewport-tall panel left a dead blue gap under the heading, so
+ *   the card is a fixed height there instead, sized to the heading plus phone.
  */
 export function Hero() {
   return (
     <section className="bg-white px-4 py-4 sm:px-6 sm:py-5">
       <div
-        className="relative flex w-full flex-col items-center justify-start overflow-hidden rounded-[32px] px-6 pt-12 text-center sm:rounded-[44px] sm:pt-16"
+        className="relative flex h-[420px] w-full flex-col items-center justify-start overflow-hidden rounded-[32px] px-6 pt-12 text-center sm:h-[calc(100dvh-160px)] sm:rounded-[44px] sm:pt-16"
         style={{
-          height: "calc(100dvh - 160px)",
           background: "url('/hero-bg.jpg') center/cover no-repeat",
         }}
       >
