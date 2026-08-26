@@ -26,12 +26,11 @@ import {
 
 /* ---------------------------------------------------------------- primitives */
 
-function Screen({ title, children }: { title: string; children: ReactNode }) {
+export function Screen({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="w-[300px] overflow-hidden rounded-[18px] bg-white shadow-[0_18px_50px_-16px_rgba(14,21,36,0.4)] ring-1 ring-[rgba(14,21,36,0.08)] sm:w-[336px]">
-      <div className="flex items-center gap-2 border-b border-[var(--color-line)] px-4 py-2.5">
-        <span className="h-5 w-5 shrink-0 rounded-full bg-[var(--color-brand)]/12" />
-        <p className="truncate text-[11.5px] font-semibold text-[var(--color-ink)]">
+      <div className="border-b border-[var(--color-line)] px-4 py-2.5">
+        <p className="truncate text-[14px] font-semibold text-[var(--color-ink)]">
           {title}
         </p>
       </div>
@@ -40,7 +39,7 @@ function Screen({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-function Bubble({ me, children }: { me?: boolean; children: ReactNode }) {
+export function Bubble({ me, children }: { me?: boolean; children: ReactNode }) {
   return (
     <div className={`flex ${me ? "justify-end" : "justify-start"}`}>
       <p
@@ -56,7 +55,7 @@ function Bubble({ me, children }: { me?: boolean; children: ReactNode }) {
   );
 }
 
-function Card({
+export function Card({
   icon,
   title,
   meta,
@@ -92,7 +91,7 @@ function Card({
   );
 }
 
-function Row({ label, value }: { label: string; value: string }) {
+export function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between border-b border-[var(--color-line)] py-1.5 last:border-0">
       <p className="text-[11px] text-[var(--color-ink-3)]">{label}</p>
@@ -101,7 +100,7 @@ function Row({ label, value }: { label: string; value: string }) {
   );
 }
 
-function Chip({ children }: { children: ReactNode }) {
+export function Chip({ children }: { children: ReactNode }) {
   return (
     <span className="rounded-full bg-[var(--color-brand-wash)] px-2 py-[3px] text-[10px] font-medium text-[var(--color-brand-dark)]">
       {children}
@@ -109,7 +108,7 @@ function Chip({ children }: { children: ReactNode }) {
   );
 }
 
-const I = { size: 13, strokeWidth: 2.1 } as const;
+export const I = { size: 13, strokeWidth: 2.1 } as const;
 
 /* ------------------------------------------------------------------ screens */
 

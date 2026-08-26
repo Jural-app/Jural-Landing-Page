@@ -83,7 +83,7 @@ export function Cta() {
           </p>
 
           <a
-            href="#demo"
+            href="/demo"
             className="group mt-8 inline-flex items-center rounded-full bg-[var(--color-brand)] text-[14px] font-medium text-white transition-colors hover:bg-[var(--color-brand-deep)]"
           >
             <span className="py-3 pl-5 pr-4">Get 14 Days Demo</span>
