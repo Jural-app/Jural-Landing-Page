@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Header } from "@/components/Header";
 import { MessageBarDemo } from "@/components/MessageBarDemo";
+import { ScrollPhones } from "@/components/ScrollPhones";
 import { Cta } from "@/components/Cta";
 import { Footer } from "@/components/Footer";
 import {
@@ -217,41 +218,7 @@ export default function IPhonePage() {
       </section>
 
       {/* ------------------------------------------------------- the device */}
-      <section aria-label="The app" className="overflow-hidden bg-white">
-        <div className="mx-auto grid max-w-[1340px] items-center gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1fr_minmax(0,960px)_1fr] lg:gap-2">
-          {/* left annotation */}
-          <p className="mx-auto max-w-[24ch] text-center text-[15px] leading-relaxed text-[var(--color-ink-2)] lg:mx-0 lg:max-w-[17ch] lg:text-right">
-            <span className="font-semibold text-[var(--color-ink)]">
-              Built as an iPhone app,
-            </span>{" "}
-            not a desktop product shrunk to fit one.
-          </p>
-
-          {/* the phones */}
-          <div className="order-first lg:order-none">
-            <Image
-              src="/screens/mockup.webp"
-              alt="Three iPhones running Jural, a client intake arriving into the case thread on the centre screen"
-              width={3000}
-              height={2000}
-              sizes="(min-width: 1024px) 960px, 96vw"
-              quality={92}
-              className="h-auto w-full"
-            />
-            <p className="mt-5 text-center text-[13px] text-[var(--color-ink-3)]">
-              Jural for iOS. Every case, wherever the day takes you.
-            </p>
-          </div>
-
-          {/* right annotation */}
-          <p className="mx-auto max-w-[24ch] text-center text-[15px] leading-relaxed text-[var(--color-ink-2)] lg:mx-0 lg:max-w-[17ch] lg:text-left">
-            <span className="font-semibold text-[var(--color-ink)]">
-              The whole case rides along:
-            </span>{" "}
-            documents, tasks, billing and signatures, in one thread.
-          </p>
-        </div>
-      </section>
+      <ScrollPhones />
 
       {/* ------------------------------------------------------ the Tuesday */}
       <section aria-label="One working day" className="bg-white">

@@ -3,3 +3,8 @@ node_modules
 .DS_Store
 next-env.d.ts
 tsconfig.tsbuildinfo
+
+# Rotato source render + watermarked frame extraction (regenerate from the
+# licensed export; see components/ScrollPhonesSequence.tsx)
+public/screens/animation.mov
+public/screens/anim/
