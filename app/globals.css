@@ -124,3 +124,35 @@
   0%, 100% { transform: scaleY(0.3); }
   50%      { transform: scaleY(1); }
 }
+
+/* Marching dashes on the iPhone-to-Mac sync mark (/product/mac).
+   The connector is vertical while the devices stack (below lg) and
+   horizontal once they sit in a row, so the dash direction follows. */
+@keyframes jural-stream-y {
+  from { background-position: 0 0; }
+  to   { background-position: 0 96px; }
+}
+
+.jural-sync-dash {
+  background-image: repeating-linear-gradient(
+    180deg,
+    var(--color-brand) 0 6px,
+    transparent 6px 12px
+  );
+  animation: jural-stream-y 3.2s linear infinite;
+}
+
+@media (min-width: 1024px) {
+  .jural-sync-dash {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--color-brand) 0 6px,
+      transparent 6px 12px
+    );
+    animation: jural-stream 3.2s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jural-sync-dash { animation: none; }
+}
