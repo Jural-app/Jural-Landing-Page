@@ -239,7 +239,7 @@ export default function MacPage() {
         {/* the desk itself, full bleed; the digest floats on the quiet side */}
         <div className="relative flex min-h-[600px] items-center overflow-hidden py-14 sm:min-h-[760px]">
           <Image
-            src="/laptop.webp"
+            src="/laptop-desk.webp"
             alt="Sitting down at the desk with Jural open on a MacBook"
             fill
             sizes="100vw"
