@@ -425,7 +425,7 @@ export default function SecurityPage() {
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-10 border-t border-white/15 pt-10 sm:grid-cols-3 sm:gap-8">
+          <div className="mt-12 grid gap-10 border-t border-white/15 pt-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
             <div>
               {/* certificate seal */}
               <svg
@@ -452,6 +452,32 @@ export default function SecurityPage() {
               <p className="mt-2.5 max-w-[32ch] text-[14px] leading-relaxed text-white/70">
                 E-signatures compliant with US federal and state
                 electronic-signature law.
+              </p>
+            </div>
+            <div>
+              {/* audit seal */}
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="text-white/80"
+              >
+                <circle cx="12" cy="9.5" r="6.5" />
+                <path d="M9.5 9.4l1.8 1.8 3.2-3.5" />
+                <path d="M8.5 15.2L7 21l5-2.5L17 21l-1.5-5.8" />
+              </svg>
+              <p className="mt-4 text-[17px] font-semibold tracking-[-0.01em] text-white">
+                SOC 2
+              </p>
+              <p className="mt-2.5 max-w-[32ch] text-[14px] leading-relaxed text-white/70">
+                Security program aligned to the AICPA Trust Services
+                Criteria.
               </p>
             </div>
             <div>
