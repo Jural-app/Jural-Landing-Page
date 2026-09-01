@@ -61,10 +61,11 @@ export default function AboutPage() {
           <div className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-3)]">
             About Jural
           </div>
-          <h1 className="mt-6 max-w-[15ch] text-[clamp(2.6rem,1.2rem+4.8vw,5.4rem)] font-medium leading-[1.06] tracking-[-0.03em] text-[var(--color-ink)] [font-family:var(--font-display)]">
-            We didn&rsquo;t set out to build another CRM.
+          <h1 className="mt-6 text-[clamp(2.6rem,1.2rem+4.8vw,5.4rem)] font-medium leading-[1.06] tracking-[-0.03em] text-[var(--color-ink)] [font-family:var(--font-display)]">
+            We didn&rsquo;t set out to build
+            <br className="hidden sm:block" /> another CRM.
           </h1>
-          <p className="mt-7 max-w-[34ch] text-[clamp(1.3rem,1rem+1.3vw,2rem)] font-normal leading-[1.4] tracking-[-0.015em] text-[var(--color-ink-3)] [font-family:var(--font-display)]">
+          <p className="mt-7 max-w-[46ch] text-[clamp(1.3rem,1rem+1.3vw,2rem)] font-normal leading-[1.4] tracking-[-0.015em] text-[var(--color-ink-3)] [font-family:var(--font-display)]">
             We set out to understand why lawyers kept walking away from the
             ones they had.
           </p>
@@ -72,7 +73,7 @@ export default function AboutPage() {
       </section>
 
       {/* ------------------------------------------------------ what we do */}
-      <section aria-label="What we do" className="bg-white">
+      <section aria-label="What we build" className="bg-white">
         <div className="grid items-center lg:grid-cols-2">
           {/* device cutout on its wash ground, running to the left screen edge */}
           <div
@@ -91,7 +92,7 @@ export default function AboutPage() {
 
           <div className="px-5 py-16 sm:px-6 sm:py-20 lg:py-24 lg:pl-20 lg:pr-[max(1.5rem,calc((100vw-1340px)/2+1.5rem))]">
             <h2 className="text-[clamp(1.7rem,1.2rem+1.6vw,2.4rem)] font-semibold tracking-[-0.025em] text-[var(--color-ink)] [font-family:var(--font-display)]">
-              What we do
+              What we build
             </h2>
             <p className="mt-5 max-w-[30ch] text-[clamp(1.25rem,1rem+1vw,1.7rem)] font-semibold leading-[1.3] tracking-[-0.02em] text-[var(--color-brand)] [font-family:var(--font-display)]">
               We build the practice platform that fits in a lawyer&rsquo;s
@@ -168,8 +169,8 @@ export default function AboutPage() {
               Who we build for
             </h2>
             <p className="mt-5 max-w-[30ch] text-[clamp(1.25rem,1rem+1vw,1.7rem)] font-semibold leading-[1.3] tracking-[-0.02em] text-[var(--color-brand)] [font-family:var(--font-display)]">
-              Solo attorneys and small firms, whose office is wherever the
-              matter takes them.
+              For the lawyers whose office is wherever the matter takes
+              them.
             </p>
             <div className={`mt-6 max-w-[54ch] ${BODY}`}>
               <p>
