@@ -308,16 +308,10 @@ export function MacWindowUI() {
   return (
     <div
       ref={rootRef}
-      className="overflow-hidden rounded-[12px] bg-white shadow-[0_36px_90px_-30px_rgba(14,21,36,0.45)] ring-1 ring-[rgba(14,21,36,0.1)]"
+      className="overflow-hidden rounded-[12px] shadow-[0_36px_90px_-30px_rgba(14,21,36,0.45)] ring-1 ring-white/40"
     >
       {/* -------- title bar: a whisper of the brand across the chrome ------ */}
-      <div
-        className="flex items-center gap-3 border-b border-[var(--color-line)] px-4 py-2.5"
-        style={{
-          background:
-            "linear-gradient(90deg, var(--color-brand-wash) 0%, rgba(192,232,248,0.3) 45%, #ffffff 100%)",
-        }}
-      >
+      <div className="flex items-center gap-3 border-b border-[rgba(14,21,36,0.06)] bg-white/60 px-4 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] backdrop-blur-xl backdrop-saturate-[180%]">
         <div className="flex gap-2" aria-hidden="true">
           <span className="h-[11px] w-[11px] rounded-full bg-[#ff5f57]" />
           <span className="h-[11px] w-[11px] rounded-full bg-[#febc2e]" />
@@ -327,7 +321,7 @@ export function MacWindowUI() {
 
       <div className="flex">
         {/* -------- icon rail -------- */}
-        <div className="hidden w-[52px] shrink-0 flex-col items-center gap-2 border-r border-[var(--color-line)] bg-[rgba(14,21,36,0.018)] py-3 sm:flex">
+        <div className="hidden w-[52px] shrink-0 flex-col items-center gap-2 border-r border-[rgba(14,21,36,0.06)] bg-white/60 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] backdrop-blur-xl backdrop-saturate-[180%] sm:flex">
           <Image
             src="/jural-logo.png"
             alt=""
@@ -364,7 +358,7 @@ export function MacWindowUI() {
             </span>
           </div>
 
-          <div className="mx-0.5 mb-2.5 flex h-7 items-center gap-1.5 rounded-lg border border-[var(--color-line)] bg-white px-2.5">
+          <div className="mx-0.5 mb-2.5 flex h-7 items-center gap-1.5 rounded-lg bg-white/50 px-2.5 ring-1 ring-[rgba(14,21,36,0.08)]">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" className="text-[var(--color-ink-3)]">
               <circle cx="11" cy="11" r="7" />
               <line x1="21" y1="21" x2="16.5" y2="16.5" />
@@ -424,7 +418,7 @@ export function MacWindowUI() {
         </div>
 
         {/* -------- the thread -------- */}
-        <div className="flex min-h-[560px] flex-1 flex-col">
+        <div className="flex min-h-[560px] flex-1 flex-col bg-white">
           {/* case header */}
           <div className="flex items-center gap-3 border-b border-[var(--color-line)] bg-[rgba(14,21,36,0.03)] px-5 py-1.5">
             <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--color-brand)] text-[9.5px] font-bold text-white">

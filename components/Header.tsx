@@ -305,7 +305,7 @@ export function Header() {
 
       {/* ---- Nav bar ------------------------------------------ */}
       <div className="relative w-full border-b border-[var(--color-line)] bg-white/90 backdrop-blur-md">
-        <nav className="mx-auto flex h-[74px] max-w-[1240px] items-center justify-between px-5 sm:px-8">
+        <nav className="mx-auto flex h-[64px] max-w-[1240px] items-center justify-between px-5 sm:px-8">
           {/* Brand */}
           <a href="/" onClick={onNavClick("/")} aria-label="Jural home" className="flex shrink-0 items-center">
             <Image src="/jural-logo.png" alt="Jural" width={482} height={601} priority className="h-11 w-auto object-contain" />
@@ -444,7 +444,7 @@ export function Header() {
 
         {/* Mobile menu */}
         {open && (
-          <div className="max-h-[calc(100dvh-119px)] overflow-y-auto border-t border-[var(--color-line)] bg-white lg:hidden">
+          <div className="max-h-[calc(100dvh-109px)] overflow-y-auto border-t border-[var(--color-line)] bg-white lg:hidden">
             <ul className="mx-auto flex max-w-[1240px] flex-col px-5 py-2 sm:px-8">
               {NAV.map((item) =>
                 hasMenu(item) ? (
