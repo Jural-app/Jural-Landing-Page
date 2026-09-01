@@ -425,35 +425,7 @@ export default function SecurityPage() {
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-10 border-t border-white/15 pt-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
-            <div>
-              {/* certificate seal */}
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-                className="text-white/80"
-              >
-                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h5" />
-                <polyline points="14 3 14 8 19 8" />
-                <line x1="9" y1="12" x2="14" y2="12" />
-                <circle cx="17" cy="17" r="3.5" />
-                <path d="M15.6 17.2l1 1 1.8-2" />
-              </svg>
-              <p className="mt-4 text-[17px] font-semibold tracking-[-0.01em] text-white">
-                ESIGN &amp; UETA
-              </p>
-              <p className="mt-2.5 max-w-[32ch] text-[14px] leading-relaxed text-white/70">
-                E-signatures compliant with US federal and state
-                electronic-signature law.
-              </p>
-            </div>
+          <div className="mt-12 grid gap-10 border-t border-white/15 pt-10 sm:grid-cols-3 sm:gap-8">
             <div>
               {/* audit seal */}
               <svg
