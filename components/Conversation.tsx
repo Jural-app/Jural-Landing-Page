@@ -20,7 +20,7 @@ import { MessageBarDemo } from "./MessageBarDemo";
  *   iphone.webp: contains a real, identifiable dispute (named individual,
  *     named company, amounts). Re-capture with fictional data, matching the
  *     Mac shot's "Hale v. Northshore" framing.
- *   _placeholder-mac-case.png: AI-generated mockup, not the real Mac app.
+ *   _placeholder-mac-case.webp: AI-generated mockup, not the real Mac app.
  */
 
 const PHONE = {
@@ -31,10 +31,10 @@ const PHONE = {
 };
 
 const MAC = {
-  src: "/screens/_placeholder-mac-case.png",
+  src: "/screens/_placeholder-mac-case.webp",
   alt: "Jural on macOS showing a case thread with a generated engagement letter",
-  w: 1400,
-  h: 1050,
+  w: 1448,
+  h: 979,
 };
 
 
@@ -43,7 +43,7 @@ export function Conversation() {
     <section
       id="solution"
       aria-label="One conversation, every device"
-      className="bg-white py-24 sm:py-32"
+      className="bg-white py-20 sm:py-24"
     >
       {/* ---- Centred headline ------------------------------------- */}
       <div className="mx-auto max-w-[1240px] px-5 text-center sm:px-8">
@@ -61,10 +61,10 @@ export function Conversation() {
       </div>
 
       {/* ---- Two full-bleed cards --------------------------------- */}
-      <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-3 px-4 sm:mt-16 lg:grid-cols-2">
+      <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-3 px-4 sm:mt-12 lg:grid-cols-2">
         {/* ============ LEFT: dark, phone only ===================== */}
         <div
-          className="relative flex h-[620px] flex-col overflow-hidden rounded-xl sm:h-[740px]"
+          className="relative flex h-[600px] flex-col overflow-hidden rounded-xl sm:h-[710px]"
           style={{
             background:
               "radial-gradient(75% 45% at 50% 100%, rgba(56,192,248,0.26) 0%, rgba(56,192,248,0) 70%), linear-gradient(180deg, #0b1524 0%, #060b14 100%)",
@@ -86,22 +86,23 @@ export function Conversation() {
             </div>
           </div>
 
-          {/* Phone: bleeds off the bottom, never clipped at the sides */}
+          {/* Phone: sized to the space left under the copy, so the whole
+              frame shows with a little floor beneath it. */}
           <div className="relative mt-8 flex-1">
             <Image
               src={PHONE.src}
               alt={PHONE.alt}
               width={PHONE.w}
               height={PHONE.h}
-              sizes="(min-width: 640px) 310px, 264px"
+              sizes="(min-width: 640px) 240px, 190px"
               quality={90}
-              className="absolute left-1/2 top-0 h-auto w-[264px] max-w-none -translate-x-1/2 drop-shadow-[0_18px_45px_rgba(0,0,0,0.55)] sm:w-[310px]"
+              className="absolute left-1/2 top-0 h-[calc(100%-28px)] w-auto max-w-none -translate-x-1/2 drop-shadow-[0_18px_45px_rgba(0,0,0,0.55)]"
             />
           </div>
         </div>
 
         {/* ============ RIGHT: vivid, the Mac app ================== */}
-        <div className="relative flex h-[620px] flex-col overflow-hidden rounded-xl sm:h-[740px]">
+        <div className="relative flex h-[600px] flex-col overflow-hidden rounded-xl sm:h-[710px]">
           {/* Rich background, the counterpart to the reference's scenic card */}
           <Image
             src="/hero-bg.jpg"
