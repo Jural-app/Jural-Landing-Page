@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MessageBarDemo } from "./MessageBarDemo";
 
 /**
  * Conversation: the thesis section, where the chat IS the interface.
@@ -53,6 +54,10 @@ export function Conversation() {
           No modules to learn, no forms to fill. Open a matter and say what you
           need, on the phone in your pocket or the Mac on your desk.
         </p>
+
+        {/* The entire interface, working: it types, then records, then
+            transcribes. Same component the iPhone page closes on. */}
+        <MessageBarDemo />
       </div>
 
       {/* ---- Two full-bleed cards --------------------------------- */}
