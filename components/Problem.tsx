@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Problem: laid out on the Legora reference, with a large grey panel on the left
- * holding a floating app window, and a narrow right column with the eyebrow and
- * headline pinned to the top and an accordion pinned to the bottom.
+ * Problem: copy on the left, and on the right a Mac desktop (/mac.jpg) with a
+ * legacy CRM window open on it, so the "built for a desk" line has a desk to
+ * point at.
  *
  * The window is a stylised, entirely fictional legacy CRM. No real product is
  * depicted. Its table runs wider and taller than the frame, so it stays clipped
@@ -76,20 +77,36 @@ export function Problem() {
               </p>
             </div>
           </div>
-          {/* ---- Right: grey panel holding the window ------------ */}
+          {/* ---- Right: a Mac desktop with the window open on it -- */}
           <div>
             <div
               ref={ref}
-              className="flex items-center justify-center overflow-hidden rounded-xl bg-[var(--color-canvas-deep)] p-6 sm:p-12 lg:p-14"
+              className="relative aspect-[5/4] overflow-hidden rounded-xl bg-[var(--color-canvas-deep)] sm:aspect-[2048/1332]"
             >
-              <div className="w-full overflow-hidden rounded-lg border border-[rgba(14,21,36,0.13)] bg-white shadow-[0_26px_60px_-30px_rgba(14,21,36,0.45)]">
+              {/* The desktop. Menu bar stays visible above the window and
+                  the Dock below it, so it reads as a laptop screen rather
+                  than a screenshot in a box. */}
+              <Image
+                src="/mac.jpg"
+                alt=""
+                fill
+                aria-hidden="true"
+                sizes="(min-width: 1024px) 760px, 100vw"
+                quality={90}
+                className="object-cover"
+              />
+
+              {/* The window floats where a Mac window would: clear of the
+                  menu bar, above the Dock, with a real macOS-weight shadow. */}
+              <div className="absolute inset-x-[6%] bottom-[12.5%] top-[8.5%] flex flex-col overflow-hidden rounded-[10px] border border-[rgba(14,21,36,0.18)] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.16),0_28px_70px_-18px_rgba(0,20,60,0.6)]">
                 {/* Title bar */}
-                <div className="flex items-center gap-3 border-b border-[rgba(14,21,36,0.09)] bg-[rgba(14,21,36,0.035)] px-4 py-2.5">
+                <div className="flex shrink-0 items-center gap-3 border-b border-[rgba(14,21,36,0.09)] bg-[rgba(14,21,36,0.035)] px-4 py-2.5">
                   <div className="flex gap-1.5">
-                    {[0, 1, 2].map((i) => (
+                    {["#ff5f57", "#febc2e", "#28c840"].map((c) => (
                       <span
-                        key={i}
-                        className="h-[8px] w-[8px] rounded-full bg-[rgba(14,21,36,0.16)]"
+                        key={c}
+                        style={{ backgroundColor: c }}
+                        className="h-[10px] w-[10px] rounded-full ring-1 ring-inset ring-black/10"
                       />
                     ))}
                   </div>
@@ -98,7 +115,7 @@ export function Problem() {
                 </div>
 
                 {/* Tab strip */}
-                <div className="flex items-end gap-1 border-b border-[rgba(14,21,36,0.09)] bg-[rgba(14,21,36,0.02)] px-3 pt-2">
+                <div className="flex shrink-0 items-end gap-1 border-b border-[rgba(14,21,36,0.09)] bg-[rgba(14,21,36,0.02)] px-3 pt-2">
                   {TABS.map((tw, i) => (
                     <div
                       key={i}
@@ -115,7 +132,7 @@ export function Problem() {
                 </div>
 
                 {/* Toolbar: the dimming ribbon */}
-                <div className="flex gap-1.5 overflow-hidden border-b border-[rgba(14,21,36,0.09)] px-4 py-2.5">
+                <div className="flex shrink-0 gap-1.5 overflow-hidden border-b border-[rgba(14,21,36,0.09)] px-4 py-2.5">
                   {TOOLBAR.map((i) => {
                     const off = dim && !KEEP.has(i);
                     return (
@@ -132,8 +149,8 @@ export function Problem() {
                   })}
                 </div>
 
-                {/* Body: sidebar + table, clipped on both axes */}
-                <div className="flex h-[200px] overflow-hidden sm:h-[225px]">
+                {/* Body: sidebar + table, fills the window and clips on both axes */}
+                <div className="flex min-h-0 flex-1 overflow-hidden">
                   {/* Sidebar */}
                   <div className="w-[110px] shrink-0 border-r border-[rgba(14,21,36,0.09)] bg-[rgba(14,21,36,0.02)] px-3 py-3 sm:w-[164px]">
                     {SIDEBAR.map((sw, i) => (
