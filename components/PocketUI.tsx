@@ -248,7 +248,7 @@ export function KitchenCounterUI() {
         <Step on={shown >= 3}>
           <p className="mt-2.5 flex items-center gap-1.5 text-[10px] text-[var(--color-ink-3)]">
             <LuFileText size={11} strokeWidth={2.2} />
-            You keep all of it. Jural takes 0%.
+            Paid by card. Recorded against the matter.
           </p>
         </Step>
       </Screen>

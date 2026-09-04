@@ -80,7 +80,7 @@ const FEATURES = [
   { label: "Document intelligence", href: "/product/documents", blurb: "Every document read, not just filed." },
   { label: "Document generation", href: "/product/drafting", blurb: "Drafts filled from the case." },
   { label: "E-signatures", href: "/product/esign", blurb: "Signed and filed back in minutes." },
-  { label: "Time & billing", href: "/product/billing", blurb: "Captured in passing. Invoiced at 0%." },
+  { label: "Time & billing", href: "/product/billing", blurb: "Captured in passing. Invoiced from the thread." },
   { label: "Follow-up assistant", href: "/product/follow-up", blurb: "Check-ins that keep matters moving." },
 ];
 
@@ -113,7 +113,7 @@ const SCENES: Scene[] = [
     time: "6:30 PM",
     place: "Kitchen counter",
     title: "The day bills itself.",
-    body: "Every minute captured in passing is already an invoice line. Read it once, send it. Your client pays you directly, and you keep all of it.",
+    body: "Every minute captured in passing is already an invoice line. Read it once, send it. Your client pays by card, and the payment lands against the matter.",
     ui: <KitchenCounterUI />,
     sky: SKY.evening,
   },

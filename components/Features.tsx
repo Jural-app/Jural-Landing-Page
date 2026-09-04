@@ -30,42 +30,42 @@ const STOPS = [
     time: "8:55 AM",
     place: "A new client reaches out",
     t: "Intake without forms",
-    d: "The client answers an adaptive interview instead of filling in a form. It asks its own follow-ups, reads what they upload, and the matter arrives already written up.",
+    d: "A new client answers a short interview in plain language instead of a form. It asks its own follow-ups and reads what they upload. By the time you open the matter, it is already written up.",
     ui: <IntakeUI />,
   },
   {
     time: "10:20 AM",
     place: "Back at the case file",
     t: "Every case is a thread",
-    d: "Ask for case information, log time by speaking it, attach a document or schedule a task, all in one conversation. Actions come back as cards you approve.",
+    d: "Ask what is owed, log time by saying it, set a reminder, attach a file. Each request comes back as a card you approve, in the same conversation.",
     ui: <ThreadUI />,
   },
   {
     time: "11:45 AM",
     place: "The mail brings paper",
     t: "It reads your documents",
-    d: "Text layers and OCR are extracted on the device, then digested into type, parties, dates and amounts. The raw file never leaves your phone unencrypted.",
+    d: "Drop in a letter, a contract or an invoice and Jural reads it on your phone: what it is, who is in it, the dates and the amounts. The file never leaves your device unencrypted.",
     ui: <DocumentsUI />,
   },
   {
     time: "2:10 PM",
     place: "Time to put it in writing",
     t: "Drafting from the file",
-    d: "Client, matter and firm details fill deterministically from records. The model is asked only to write the narrative, which is the part it is actually good at.",
+    d: "Ask for an engagement letter and the names, dates and terms come straight from the matter. The AI writes only the wording, so the facts come from the file, not the model.",
     ui: <DraftingUI />,
   },
   {
     time: "3:30 PM",
     place: "Out for signature",
     t: "Signature, in house",
-    d: "Send for signature and the signer verifies by email and passcode, with consent captured. The executed PDF gets a certificate and a hash seal, filed back to the case.",
+    d: "Send it for signature from the thread. The signer verifies by email and passcode, and the signed PDF comes back with a certificate, filed to the matter. No separate e-signature tool.",
     ui: <SignatureUI />,
   },
   {
     time: "5:45 PM",
     place: "Closing the day",
-    t: "Paid, and you keep all of it",
-    d: "Build an invoice from unbilled time and take payment through Stripe Connect. Your firm is the merchant of record and Jural takes 0% of what you invoice.",
+    t: "Invoiced before you leave",
+    d: "Turn the day's unbilled time into an invoice and send it from the thread. The client pays by card and the payment lands against the matter.",
     ui: <BillingUI />,
   },
 ];
@@ -77,6 +77,9 @@ export function Features() {
         {/* header */}
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
+            <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-3)]">
+              A day with Jural
+            </div>
             <h2 className="max-w-[16ch] text-[clamp(2.1rem,1.1rem+3.2vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-[var(--color-ink)] [font-family:var(--font-display)]">
               One matter, one day
             </h2>

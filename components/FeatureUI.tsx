@@ -244,7 +244,7 @@ export function SignatureUI() {
   );
 }
 
-/** 6. Billing: you keep all of it. */
+/** 6. Billing: the day's time, invoiced and paid. */
 export function BillingUI() {
   return (
     <Screen title="Invoice 1043">
@@ -262,14 +262,14 @@ export function BillingUI() {
       <div className="mt-2.5 rounded-xl border border-emerald-200 bg-emerald-50/70 p-3">
         <div className="flex items-baseline justify-between">
           <p className="text-[11.5px] font-semibold text-[var(--color-ink)]">
-            You receive
+            Paid
           </p>
           <p className="text-[15px] font-semibold tracking-[-0.02em] text-emerald-700">
             $4,410.00
           </p>
         </div>
         <p className="mt-1 text-[10px] text-[var(--color-ink-3)]">
-          Jural takes 0%. Paid out by Stripe to the firm.
+          Card payment received. Filed to the matter.
         </p>
       </div>
     </Screen>

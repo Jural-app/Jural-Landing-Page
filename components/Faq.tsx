@@ -28,10 +28,10 @@ const QA: { q: string; a: string[] }[] = [
     ],
   },
   {
-    q: "Is invoicing really free?",
+    q: "How does billing work?",
     a: [
-      "Yes. Jural takes 0% of what you invoice. Billing runs on Stripe Connect with your firm as the merchant of record, so payments land in your account directly and Stripe's own processing fee is the only deduction.",
-      "Jural is paid for by a flat subscription instead, which is the whole reason we can leave your invoices alone.",
+      "Time is captured as you go, in the thread. When you are ready, turn the unbilled time into an invoice and send it from the matter. The client pays by card, and the payment is recorded against the matter.",
+      "Jural itself is a flat subscription for the firm.",
     ],
   },
   {

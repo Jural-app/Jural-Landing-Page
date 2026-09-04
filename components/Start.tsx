@@ -5,10 +5,9 @@ import { LuCheck } from "react-icons/lu";
  * Two panels with the phone straddling the gap between them, on the Popcorn
  * reference.
  *
- * Left carries the three steps that open a matter. Right carries the sharpest
- * number we have: Jural takes 0% of what you invoice. The reference used that
- * slot for a price, and since pricing is not public yet, the 0% claim is the
- * better occupant anyway. It is the one figure a competitor cannot match.
+ * Left carries the three steps that open a matter. Right carries the promise
+ * those steps add up to: nothing to migrate, first matter open on day one.
+ * The reference used that slot for a price, and pricing is not public yet.
  *
  * The phone is a grid child on small screens, so the three blocks simply stack.
  * From lg its wrapper goes absolute and centres over the gutter, which is why
@@ -89,14 +88,14 @@ export function Start() {
           {/* ------------------------------------------ right: the number */}
           <div className="flex flex-col justify-center rounded-[28px] bg-[#12161d] p-8 text-right sm:p-10 lg:min-h-[560px] lg:pl-[145px]">
             <h2 className="ml-auto max-w-[14ch] text-[clamp(1.7rem,1.1rem+1.8vw,2.5rem)] font-semibold leading-[1.06] tracking-[-0.03em] text-white [font-family:var(--font-display)]">
-              You keep what you bill.
+              Nothing to migrate.
             </h2>
 
             <p className="mt-6 text-[clamp(4.5rem,2.5rem+7vw,8rem)] font-semibold leading-[0.86] tracking-[-0.05em] text-white [font-family:var(--font-display)]">
-              0%
+              Day 1
             </p>
             <p className="mt-3 text-[15px] text-white/60">
-              taken from your invoices
+              your first matter is open
             </p>
 
             <a

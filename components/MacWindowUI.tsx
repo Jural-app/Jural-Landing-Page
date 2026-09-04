@@ -222,7 +222,7 @@ const SCRIPT: Step[] = [
     kind: "show",
     node: (
       <Reply>
-        Invoice 1044 sent. Northshore pays the firm directly; Jural takes 0%.
+        Invoice 1044 sent. Northshore can pay by card from the link.
       </Reply>
     ),
   },
