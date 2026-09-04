@@ -32,7 +32,7 @@ const PRODUCT: Group[] = [
       { label: "Document intelligence", href: "/product/documents", blurb: "Every document read, not just filed." },
       { label: "Document generation", href: "/product/drafting", blurb: "Describe the draft, refine it by prompt." },
       { label: "E-signatures", href: "/product/esign", blurb: "ESIGN and UETA signing, built in." },
-      { label: "Time & billing", href: "/product/billing", blurb: "Capture the work, invoice at 0%." },
+      { label: "Time & billing", href: "/product/billing", blurb: "Capture the work, invoice from the thread." },
       { label: "Follow-up assistant", href: "/product/follow-up", blurb: "Check-ins that keep matters moving." },
     ],
   },
