@@ -73,7 +73,7 @@ const STOPS = [
 export function Features() {
   return (
     <section id="features" aria-label="What Jural does" className="bg-white">
-      <div className="mx-auto max-w-[1240px] px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-8 sm:py-24">
         {/* header */}
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>

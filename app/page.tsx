@@ -16,9 +16,9 @@ export default function Home() {
       <Header />
       <Hero />
       <Problem />
-      <Pillars />
       <Conversation />
       <Features />
+      <Pillars />
       <Trust />
       <Start />
       <Faq />

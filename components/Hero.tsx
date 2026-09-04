@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 /**
  * Hero, from the Figma comp (Jural / node 329:830): a rounded blue panel, a
@@ -21,7 +21,12 @@ import type { CSSProperties } from "react";
  */
 
 const CANVAS_W = 1473;
-const CANVAS_H = 662;
+/* The comp is 662 tall. The copy block grew (eyebrow, three-line subline,
+   buttons), so the panel gets DY more units of headroom at the top and every
+   comp y-coordinate is offset by it. */
+const DY = 104;
+const CANVAS_H = 662 + DY;
+const y = (n: number) => u(n + DY);
 
 /** A comp pixel, as a length that scales with the panel. */
 const u = (n: number) => `calc(${n} * var(--u))`;
@@ -47,6 +52,30 @@ const glass = (shadow: string): CSSProperties => ({
   ].join(", "),
 });
 
+/** Small facts on a glass card: the same chips the app puts under an action. */
+function HeroChip({ children }: { children: ReactNode }) {
+  return (
+    <span
+      className="whitespace-nowrap rounded-full bg-white/22 font-medium text-white ring-1 ring-inset ring-white/25"
+      style={{ fontSize: u(10), lineHeight: 1, padding: `${u(4)} ${u(7)}` }}
+    >
+      {children}
+    </span>
+  );
+}
+
+/** The one-tap approval the app puts on every action card. */
+function HeroButton({ children }: { children: ReactNode }) {
+  return (
+    <span
+      className="whitespace-nowrap rounded-full bg-white font-semibold text-[var(--color-brand-deep)]"
+      style={{ fontSize: u(10.5), lineHeight: 1, padding: `${u(5)} ${u(9)}` }}
+    >
+      {children}
+    </span>
+  );
+}
+
 function CheckGlyph() {
   return (
     <svg
@@ -67,7 +96,7 @@ function CheckGlyph() {
 }
 
 /** Blue rounded-square icon tile used by the bell and document notifications. */
-function IconTile({ children }: { children: React.ReactNode }) {
+function IconTile({ children }: { children: ReactNode }) {
   return (
     <span
       className="relative grid shrink-0 place-items-center bg-[#0b7ae0]"
@@ -132,7 +161,7 @@ export function Hero() {
               scale with the panel. */}
           <svg
             aria-hidden="true"
-            viewBox={`0 0 ${CANVAS_W} ${CANVAS_H}`}
+            viewBox={`0 ${-DY} ${CANVAS_W} ${CANVAS_H}`}
             preserveAspectRatio="none"
             className="absolute inset-0 h-full w-full"
           >
@@ -162,7 +191,7 @@ export function Hero() {
                 <feGaussianBlur stdDeviation="10" />
               </filter>
             </defs>
-            <rect x="0" y="1.2" width="1504" height="660" fill="url(#hero-vignette)" />
+            <rect x="0" y={-DY} width="1504" height={CANVAS_H} fill="url(#hero-vignette)" />
             <path
               d="M1521.7 -103.2L1569.7 -55.2L1252 501.2L964.5 222.7Z"
               fill="url(#hero-spot)"
@@ -175,26 +204,45 @@ export function Hero() {
             <circle cx="668" cy="358.2" r="200" fill="white" opacity="0.3" filter="url(#hero-blur-90)" />
           </svg>
 
-          {/* headline + copy */}
+          {/* eyebrow + headline + copy + action */}
           <div
             className="absolute left-1/2 flex -translate-x-1/2 flex-col items-center text-center text-white"
-            style={{ top: u(40.2), gap: u(9) }}
+            style={{ top: u(40.2) }}
           >
+            <p
+              className="font-semibold uppercase text-white/80"
+              style={{ fontSize: u(12.5), letterSpacing: u(1.8), lineHeight: 1 }}
+            >
+              For law firms
+            </p>
             <h1
               className="font-semibold"
               style={{
+                marginTop: u(14),
                 width: u(1425),
                 fontSize: u(40),
                 lineHeight: 1.2,
                 letterSpacing: u(-1.968),
               }}
             >
-              Forget Traditional CRM Just Start Talking
+              The legal CRM you run by talking to it.
             </h1>
-            <p style={{ width: u(653), fontSize: u(16), lineHeight: u(24.38) }}>
-              The client answers an AI interview instead of a form. What lands
-              in the case is already written up: key facts, parties, timeline.
+            <p
+              className="text-white/90"
+              style={{ marginTop: u(12), width: u(840), fontSize: u(16), lineHeight: u(24.38) }}
+            >
+              Text or speak to a matter like you&rsquo;d message a colleague.
+              The AI handles the rest: intake, documents, drafting, signatures
+              and billing, all in the conversation. Private by design, native
+              on iPhone and Mac.
             </p>
+            <a
+              href="/demo"
+              className="inline-flex items-center rounded-full bg-white font-semibold text-[var(--color-brand-deep)] transition-colors hover:bg-white/90"
+              style={{ marginTop: u(22), height: u(42), padding: `0 ${u(20)}`, fontSize: u(14) }}
+            >
+              Get 14 Days Demo
+            </a>
           </div>
 
           {/* Mac */}
@@ -207,13 +255,13 @@ export function Hero() {
             unoptimized
             sizes="(min-width: 640px) 43vw, 100vw"
             className="absolute max-w-none"
-            style={{ left: u(379), top: u(212.2), width: u(626.428), height: u(403) }}
+            style={{ left: u(379), top: y(212.2), width: u(626.428), height: u(403) }}
           />
 
           {/* iPhone: the comp's crop box, tilted 5.62°, leaning on the Mac */}
           <div
             className="absolute grid place-items-center"
-            style={{ left: u(791), top: u(262.2), width: u(295.243), height: u(414.39) }}
+            style={{ left: u(791), top: y(262.2), width: u(295.243), height: u(414.39) }}
           >
             <div
               className="relative overflow-hidden"
@@ -237,13 +285,13 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Invoice 1042.pdf, by the phone */}
+          {/* Demand letter drafted, by the phone */}
           <div
             className="absolute flex items-center bg-white/30"
             style={{
               left: u(998),
-              top: u(491.2),
-              width: u(204),
+              top: y(491.2),
+              width: u(292),
               gap: u(6),
               borderRadius: u(22.269),
               padding: `${u(7.423)} ${u(18.557)} ${u(7.423)} ${u(7.423)}`,
@@ -258,23 +306,26 @@ export function Hero() {
                 className="whitespace-nowrap font-semibold text-white"
                 style={{ fontSize: u(12), lineHeight: u(12.75) }}
               >
-                Invoice 1042.pdf
+                Demand letter drafted
               </p>
               <p
                 className="whitespace-nowrap text-[#ebedf0]"
                 style={{ fontSize: u(10), lineHeight: u(10.2) }}
               >
-                Demand letter follow-up
+                Filled from the case, ready to send
               </p>
             </div>
+            <span className="ml-auto shrink-0">
+              <HeroButton>Review</HeroButton>
+            </span>
           </div>
 
-          {/* Matter opened, bell, over the Mac's left edge */}
+          {/* Reminder set, bell, over the Mac's left edge */}
           <div
             className="absolute flex items-start bg-white/30"
             style={{
-              left: u(254),
-              top: u(231.2),
+              left: u(222),
+              top: y(231.2),
               width: u(235),
               padding: u(12),
               gap: u(6),
@@ -290,23 +341,27 @@ export function Hero() {
                 className="whitespace-nowrap font-semibold leading-normal text-white"
                 style={{ fontSize: u(12) }}
               >
-                Matter opened
+                Reminder set
               </p>
               <p
                 className="font-medium text-white"
-                style={{ fontSize: u(12), lineHeight: u(23.373) }}
+                style={{ fontSize: u(12), lineHeight: u(16) }}
               >
-                Hale v. Northshore Logistics already written up.
+                Chase Northshore&rsquo;s counsel on the ledger exhibits.
               </p>
+              <div className="flex items-center" style={{ gap: u(5), marginTop: u(3) }}>
+                <HeroChip>Fri, 9:00 AM</HeroChip>
+                <HeroButton>Approve</HeroButton>
+              </div>
             </div>
           </div>
 
-          {/* Matter opened, Jural mark, top right */}
+          {/* Intake written up, Jural mark, top right */}
           <div
             className="absolute flex items-start bg-white/30"
             style={{
               left: u(904),
-              top: u(188.2),
+              top: y(188.2),
               width: u(294),
               padding: u(12),
               gap: u(8),
@@ -328,24 +383,29 @@ export function Hero() {
                 className="font-semibold text-white"
                 style={{ fontSize: u(12), lineHeight: u(23.373) }}
               >
-                Matter opened
+                Intake written up
               </p>
               <p
                 className="w-full text-white"
                 style={{ fontSize: u(12), lineHeight: u(16) }}
               >
-                Hale v. Northshore Logistics: key facts, parties and timeline
-                are already written up.
+                Hale v. Northshore Logistics, from a conversation. Nothing
+                typed into a form.
               </p>
+              <div className="flex flex-wrap items-center" style={{ gap: u(5), marginTop: u(7) }}>
+                <HeroChip>12 key facts</HeroChip>
+                <HeroChip>6 parties</HeroChip>
+                <HeroChip>Timeline</HeroChip>
+              </div>
             </div>
           </div>
 
-          {/* Intake completed */}
+          {/* Engagement letter signed */}
           <div
             className="absolute flex items-center bg-white/30"
             style={{
-              left: u(288),
-              top: u(477.2),
+              left: u(150),
+              top: y(445),
               gap: u(7.423),
               borderRadius: u(22.269),
               padding: u(8),
@@ -355,19 +415,27 @@ export function Hero() {
             <IconTile>
               <CheckGlyph />
             </IconTile>
-            <p
-              className="whitespace-nowrap font-semibold leading-normal text-white"
-              style={{ fontSize: u(13.918) }}
-            >
-              Intake completed
-            </p>
+            <div className="flex flex-col" style={{ gap: u(2), paddingRight: u(6) }}>
+              <p
+                className="whitespace-nowrap font-semibold text-white"
+                style={{ fontSize: u(12.5), lineHeight: 1.1 }}
+              >
+                Engagement letter signed
+              </p>
+              <p
+                className="whitespace-nowrap text-[#ebedf0]"
+                style={{ fontSize: u(10), lineHeight: 1.1 }}
+              >
+                Alex Morgan, 3:19 PM. Certificate issued.
+              </p>
+            </div>
           </div>
 
           {/* three more beams from the file's Section frame: they sit above the
               panel there, so they wash over the devices and cards here too */}
           <svg
             aria-hidden="true"
-            viewBox={`0 0 ${CANVAS_W} ${CANVAS_H}`}
+            viewBox={`0 ${-DY} ${CANVAS_W} ${CANVAS_H}`}
             preserveAspectRatio="none"
             className="pointer-events-none absolute inset-0 h-full w-full"
           >
@@ -398,18 +466,31 @@ export function Hero() {
 
         {/* ================= below sm: stacked variant ===================== */}
         <div className="relative flex flex-col items-center px-5 pt-10 text-center text-white sm:hidden">
-          <h1 className="text-[clamp(1.6rem,1rem+3.5vw,2.2rem)] font-semibold leading-[1.2] tracking-[-0.045em]">
-            Forget Traditional CRM Just Start Talking
-          </h1>
-          <p className="mt-3 max-w-[38ch] text-[15px] leading-relaxed text-white/90">
-            The client answers an AI interview instead of a form. What lands in
-            the case is already written up: key facts, parties, timeline.
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/80">
+            For law firms
           </p>
+          <h1 className="mt-3 text-[clamp(1.6rem,1rem+3.5vw,2.2rem)] font-semibold leading-[1.15] tracking-[-0.045em]">
+            The legal CRM you run by talking to it.
+          </h1>
+          <p className="mt-3 max-w-[40ch] text-[15px] leading-relaxed text-white/90">
+            Text or speak to a matter like you&rsquo;d message a colleague. The
+            AI handles the rest: intake, documents, drafting, signatures and
+            billing, all in the conversation. Private by design, native on
+            iPhone and Mac.
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
+            <a
+              href="/demo"
+              className="inline-flex h-11 items-center rounded-full bg-white px-5 text-[14px] font-semibold text-[var(--color-brand-deep)]"
+            >
+              Get 14 Days Demo
+            </a>
+          </div>
           <div className="mt-7 flex items-center gap-[6px] self-start rounded-full bg-white/30 py-[6px] pl-[6px] pr-[14px] shadow-[0px_10px_24px_-8px_rgba(0,0,0,0.15)] backdrop-blur-[3px]">
             <span className="relative grid size-[24px] shrink-0 place-items-center rounded-[8px] bg-[#0b7ae0]">
               <CheckGlyph />
             </span>
-            <p className="text-[12.5px] font-semibold">Intake completed</p>
+            <p className="text-[12.5px] font-semibold">Engagement letter signed</p>
           </div>
           <Image
             src="/hero/mac.png"

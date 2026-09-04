@@ -163,6 +163,7 @@ export function Header() {
   const [menu, setMenu] = useState<string | null>(null);   // open desktop dropdown
   const [drawer, setDrawer] = useState<string | null>(null); // open mobile accordion
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false); // past the top: show the separator
   const lastY = useRef(0);
   const headerRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -236,6 +237,8 @@ export function Header() {
       const y = window.scrollY;
       const delta = y - lastY.current;
 
+      setScrolled(y > 8);
+
       // ignore sub-pixel jitter, which otherwise flickers the bar
       if (Math.abs(delta) < 5) return;
 
@@ -250,6 +253,7 @@ export function Header() {
     };
 
     lastY.current = window.scrollY;
+    setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [open]);
@@ -304,7 +308,11 @@ export function Header() {
       </div>
 
       {/* ---- Nav bar ------------------------------------------ */}
-      <div className="relative w-full border-b border-[var(--color-line)] bg-white/90 backdrop-blur-md">
+      <div
+        className={`relative w-full border-b bg-white/90 backdrop-blur-md transition-colors duration-300 motion-reduce:transition-none ${
+          scrolled ? "border-[var(--color-line)]" : "border-transparent"
+        }`}
+      >
         <nav className="mx-auto flex h-[64px] max-w-[1240px] items-center justify-between px-5 sm:px-8">
           {/* Brand */}
           <a href="/" onClick={onNavClick("/")} aria-label="Jural home" className="flex shrink-0 items-center">

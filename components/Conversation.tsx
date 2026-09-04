@@ -43,25 +43,46 @@ export function Conversation() {
     <section
       id="solution"
       aria-label="One conversation, every device"
-      className="bg-white py-20 sm:py-24"
+      className="relative bg-white py-20 sm:py-24"
     >
+      {/* Full-bleed wash: starts above the heading, fades to white behind
+          the two cards, so the demo sits on a ground instead of in a box. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-[720px] sm:h-[820px]"
+        style={{
+          background:
+            "radial-gradient(50% 60% at 50% 30%, rgba(14,130,232,0.14) 0%, rgba(14,130,232,0) 70%), linear-gradient(180deg, var(--color-brand-wash) 0%, var(--color-brand-wash) 45%, rgba(255,255,255,0) 100%)",
+        }}
+      />
+
       {/* ---- Centred headline ------------------------------------- */}
-      <div className="mx-auto max-w-[1240px] px-5 text-center sm:px-8">
+      <div className="relative mx-auto max-w-[1240px] px-5 text-center sm:px-8">
+        <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-3)]">
+          What we built instead
+        </div>
         <h2 className="mx-auto max-w-4xl text-[clamp(1.9rem,1rem+2.6vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--color-ink)] [font-family:var(--font-display)]">
           You already know how to use it.
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-[16.5px] leading-relaxed text-[var(--color-ink-2)]">
-          No modules to learn, no forms to fill. Open a matter and say what you
-          need, on the phone in your pocket or the Mac on your desk.
+          Jural replaces the modules and the forms with one conversation per
+          matter. Say what you need, typed or spoken, and the work gets done.
         </p>
 
-        {/* The entire interface, working: it types, then records, then
-            transcribes. Same component the iPhone page closes on. */}
-        <MessageBarDemo />
+      </div>
+
+      {/* The entire interface, working: it types, then records, then
+          transcribes. Same component the iPhone page closes on, given a
+          stage here so it reads as the demo it is, not a search box. */}
+      <div className="relative mx-auto mt-10 max-w-[1240px] px-4 sm:mt-12">
+        <MessageBarDemo size="lg" />
+        <p className="mt-6 text-center text-[13px] font-medium uppercase tracking-[0.14em] text-[var(--color-ink-3)]">
+          This is the entire interface
+        </p>
       </div>
 
       {/* ---- Two full-bleed cards --------------------------------- */}
-      <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-3 px-4 sm:mt-12 lg:grid-cols-2">
+      <div className="relative mt-12 grid grid-cols-[minmax(0,1fr)] gap-3 px-4 sm:mt-16 lg:grid-cols-2">
         {/* ============ LEFT: dark, phone only ===================== */}
         <div
           className="relative flex h-[600px] flex-col overflow-hidden rounded-xl sm:h-[710px]"
@@ -79,9 +100,9 @@ export function Conversation() {
                 The iPhone app
               </p>
               <p className="mt-4 max-w-[44ch] text-[15px] leading-relaxed text-white/60">
-                The client answers an AI interview instead of a form. What lands
-                in the case is already written up: key facts, parties,
-                timeline.
+                Your whole practice, wherever you are. If you have your phone,
+                you have every matter, and a minute between meetings is enough
+                to move one forward.
               </p>
             </div>
           </div>
@@ -125,15 +146,15 @@ export function Conversation() {
           <div className="relative px-6 pt-8 sm:px-10 sm:pt-10">
             <div>
               <h3 className="text-[clamp(1.5rem,1.1rem+1.1vw,2.1rem)] font-semibold tracking-[-0.03em] text-white [font-family:var(--font-display)]">
-                Everywhere you work
+                One interface, every device
               </h3>
               <p className="mt-1 text-[15px] font-semibold text-white/85">
-                iPhone + Mac, one case
+                The same conversation on iPhone and Mac
               </p>
               <p className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-white/70">
-                The same conversation, in step across your devices over
-                end-to-end encryption. Ask for an engagement letter in plain
-                words and it drafts from what the case already knows.
+                No modules, menus or forms to learn. Every matter is a thread,
+                and the thread is the whole interface. Type or speak, on your
+                phone or your Mac, always in step.
               </p>
             </div>
           </div>
