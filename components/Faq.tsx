@@ -51,7 +51,7 @@ const QA: { q: string; a: string[] }[] = [
 export function Faq() {
   return (
     <section id="faq" aria-label="Frequently asked questions" className="bg-white">
-      <div className="mx-auto max-w-[1240px] px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-8 sm:py-24">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.5fr)] lg:gap-20">
           <h2 className="max-w-[11ch] text-[clamp(2.1rem,1.1rem+3.2vw,3.5rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-[var(--color-ink)] [font-family:var(--font-display)]">
             Frequently asked questions

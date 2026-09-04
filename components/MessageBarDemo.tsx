@@ -25,7 +25,8 @@ const WORD_MS = 170;
 const HOLD_MS = 1500;
 const REST_MS = 550;
 
-export function MessageBarDemo() {
+export function MessageBarDemo({ size = "md" }: { size?: "md" | "lg" }) {
+  const lg = size === "lg";
   const [text, setText] = useState("");
   const [voice, setVoice] = useState(false);
   const [secs, setSecs] = useState(0);
@@ -92,7 +93,11 @@ export function MessageBarDemo() {
   return (
     <div
       aria-hidden="true"
-      className="mx-auto mt-10 flex w-full max-w-[440px] items-center gap-3 rounded-full border border-[var(--color-line)] bg-white py-2.5 pl-5 pr-2.5 shadow-[0_18px_44px_-18px_rgba(14,21,36,0.28)]"
+      className={`mx-auto flex w-full items-center rounded-full border border-[var(--color-line)] bg-white shadow-[0_18px_44px_-18px_rgba(14,21,36,0.28)] ${
+        lg
+          ? "mt-0 max-w-[640px] gap-3.5 py-3 pl-6 pr-3"
+          : "mt-10 max-w-[440px] gap-3 py-2.5 pl-5 pr-2.5"
+      }`}
     >
       {/* recording cluster, only while the voice note runs */}
       {voice && (
@@ -116,7 +121,7 @@ export function MessageBarDemo() {
       {/* the line itself: typed text, live transcript, or the placeholder */}
       <div
         ref={scroller}
-        className="flex-1 overflow-hidden whitespace-nowrap text-left text-[14.5px]"
+        className={`flex-1 overflow-hidden whitespace-nowrap text-left ${lg ? "text-[17px]" : "text-[14.5px]"}`}
       >
         {text === "" && !voice ? (
           <span className="text-[var(--color-ink-3)]">Message the case&hellip;</span>
@@ -130,7 +135,7 @@ export function MessageBarDemo() {
         )}
       </div>
 
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[var(--color-brand)] text-white">
+      <span className={`grid shrink-0 place-items-center rounded-full bg-[var(--color-brand)] text-white ${lg ? "h-11 w-11" : "h-9 w-9"}`}>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="19" x2="12" y2="5" />
           <polyline points="5 12 12 5 19 12" />

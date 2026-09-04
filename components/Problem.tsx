@@ -52,28 +52,29 @@ export function Problem() {
 
   return (
     <section id="problem" aria-label="The problem" className="bg-white">
-      <div className="mx-auto max-w-[1240px] px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-8 sm:py-24">
         <div className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.9fr)] lg:gap-12">
           {/* ---- Left: eyebrow, headline, body ------------------- */}
           <div className="flex flex-col justify-center">
             <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-3)]">
-              The Problem
+              The problem
             </div>
 
             <h2 className="text-[clamp(1.55rem,1rem+1.3vw,2rem)] font-semibold leading-[1.12] tracking-[-0.025em] text-[var(--color-ink)] [font-family:var(--font-display)]">
-              For over a decade, lawyers came to us asking for a custom CRM.
-              They were already paying for one.
+              Legal software was built for a desk. A lawyer&rsquo;s day
+              doesn&rsquo;t happen at one.
             </h2>
 
             <div className="mt-6 space-y-4 text-[15.5px] leading-relaxed text-[var(--color-ink-2)]">
               <p>
-                We assumed it was cost. Then we assumed it was privacy. It was
-                neither. The software was built for a desk, and a
-                lawyer&rsquo;s day doesn&rsquo;t happen at one.
+                For over a decade, law firms came to us asking for a custom
+                CRM while already paying for a well-known one. It was never
+                the cost, and it was never privacy. It was that every task
+                meant sitting down, opening a module and filling in a form.
               </p>
               <p className="font-semibold text-[var(--color-ink)]">
                 Hundreds of features. A handful ever used. Every one of them
-                asking to be fed.
+                waiting to be typed into.
               </p>
             </div>
           </div>
@@ -211,7 +212,7 @@ export function Problem() {
             </div>
 
             <p className="mt-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--color-ink-3)] [font-family:var(--font-mono)]">
-              A typical legacy CRM
+              A typical legacy CRM. Twenty-four tools in the ribbon, four in use.
             </p>
           </div>
 

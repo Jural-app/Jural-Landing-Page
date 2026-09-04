@@ -37,7 +37,7 @@ const STEPS = [
 export function Start() {
   return (
     <section id="start" aria-label="Getting started" className="bg-white">
-      <div className="px-4 py-16 sm:px-6 sm:py-20">
+      <div className="px-4 py-20 sm:px-6 sm:py-24">
         <div className="relative grid items-center gap-5 lg:grid-cols-2 lg:gap-16">
           {/* ------------------------------------------ left: the steps */}
           <div

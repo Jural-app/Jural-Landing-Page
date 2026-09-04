@@ -12,7 +12,7 @@ import Image from "next/image";
 export function Trust() {
   return (
     <section id="security" className="bg-white">
-      <div className="mx-auto max-w-[1200px] px-6 py-24 sm:px-10 sm:py-32">
+      <div className="mx-auto max-w-[1200px] px-6 py-20 sm:px-10 sm:py-24">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           {/* Left: G2 badge, centered in its column */}
           <div className="flex justify-center">
