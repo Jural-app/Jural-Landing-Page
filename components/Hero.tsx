@@ -16,7 +16,9 @@ import type { CSSProperties, ReactNode } from "react";
  *
  * /public/hero holds the comp's own assets: the transparent Mac and iPhone
  * mockups (served unoptimized, the optimizer's WebP pass flattens their
- * alpha) and the Jural mark. The lighting, glyphs and shadows are inline SVG
+ * alpha, so they are pre-compressed to WebP with alpha kept: ~45KB each
+ * against ~300KB and ~230KB as PNG; the PNGs stay as the source art) and
+ * the Jural mark. The lighting, glyphs and shadows are inline SVG
  * from the file. The Glass effect is rebuilt in CSS (see `glass`).
  */
 
@@ -247,11 +249,11 @@ export function Hero() {
 
           {/* Mac */}
           <Image
-            src="/hero/mac.png"
+            src="/hero/mac.webp"
             alt="Jural on Mac showing a case thread with a completed intake"
             width={1254}
             height={806}
-            priority
+            preload
             unoptimized
             sizes="(min-width: 640px) 43vw, 100vw"
             className="absolute max-w-none"
@@ -272,11 +274,11 @@ export function Hero() {
               }}
             >
               <Image
-                src="/hero/iphone.png"
+                src="/hero/iphone.webp"
                 alt="Jural on iPhone showing the same case"
                 width={485}
                 height={792}
-                priority
+                loading="eager"
                 unoptimized
                 sizes="(min-width: 640px) 17vw, 60vw"
                 className="absolute top-0 max-w-none"
@@ -493,11 +495,11 @@ export function Hero() {
             <p className="text-[12.5px] font-semibold">Engagement letter signed</p>
           </div>
           <Image
-            src="/hero/mac.png"
+            src="/hero/mac.webp"
             alt="Jural on Mac showing a case thread with a completed intake"
             width={1254}
             height={806}
-            priority
+            preload
             unoptimized
             className="mt-2 w-full max-w-[460px]"
           />
