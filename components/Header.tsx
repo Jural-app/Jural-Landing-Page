@@ -24,18 +24,11 @@ const PRODUCT: Group[] = [
       { label: "Mac app", href: "/product/mac", blurb: "A real native Mac app, not a wrapper." },
     ],
   },
-  {
-    title: "Features",
-    items: [
-      { label: "AI client intake", href: "/product/intake", blurb: "The client answers an interview, not a form." },
-      { label: "Case chat & assistant", href: "/product/chat", blurb: "One thread per matter, grounded in the case." },
-      { label: "Document intelligence", href: "/product/documents", blurb: "Every document read, not just filed." },
-      { label: "Document generation", href: "/product/drafting", blurb: "Describe the draft, refine it by prompt." },
-      { label: "E-signatures", href: "/product/esign", blurb: "ESIGN and UETA signing, built in." },
-      { label: "Time & billing", href: "/product/billing", blurb: "Capture the work, invoice from the thread." },
-      { label: "Follow-up assistant", href: "/product/follow-up", blurb: "Check-ins that keep matters moving." },
-    ],
-  },
+  /*
+   * Features (intake, chat, documents, drafting, e-signatures, billing,
+   * follow-up) come back as a group here as their pages ship. Linking them
+   * earlier sends visitors, and Google, to 404s.
+   */
 ];
 
 /**
@@ -47,8 +40,7 @@ const PRODUCT: Group[] = [
 const NAV: NavEntry[] = [
   { label: "Product", groups: PRODUCT },
   { label: "Security", href: "/security" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Resources", href: "/resources" },
+  // Pricing (/pricing) and Resources (/resources) return here once those pages exist.
   { label: "About", href: "/about" },
 ];
 
@@ -183,7 +175,7 @@ export function Header() {
 
   /**
    * Hash links scroll without touching the URL; real routes navigate normally.
-   * The split matters now that the nav points at /product/* and /pricing:
+   * The split matters now that the nav points at /product/* and /security:
    * intercepting those would leave the visitor sitting on the homepage after a
    * click that looked like navigation.
    *

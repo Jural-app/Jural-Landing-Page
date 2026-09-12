@@ -11,12 +11,14 @@ import {
   HallwayUI,
   KitchenCounterUI,
 } from "@/components/PocketUI";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "iPhone app | Jural",
+export const metadata: Metadata = pageMetadata({
+  title: "Legal CRM for iPhone | Jural",
   description:
     "Jural on iPhone is not a companion app. It is the whole firm: cases, documents, signatures and billing, working wherever your day happens.",
-};
+  path: "/product/iphone",
+});
 
 /**
  * The iPhone page argues one claim: the phone is the firm, not a porthole into
@@ -320,32 +322,29 @@ export default function IPhonePage() {
                 Seven jobs, one conversation.
               </h2>
               <p className="mt-4 text-[15.5px] leading-relaxed text-[var(--color-ink-2)]">
-                Everything the day above ran on. Each has a page of its own.
+                Everything the day above ran on.
               </p>
             </div>
 
+            {/*
+             * Plain rows until the /product/* feature pages ship. Each keeps its
+             * href so these can turn back into links as each page goes live.
+             */}
             <div className="grid sm:grid-cols-2 sm:gap-x-10">
               {FEATURES.map((f) => (
-                <a
+                <div
                   key={f.href}
-                  href={f.href}
-                  className="group flex items-center gap-6 border-t border-[var(--color-line)] py-5"
+                  className="flex items-center gap-6 border-t border-[var(--color-line)] py-5"
                 >
                   <div>
-                    <p className="text-[17px] font-semibold tracking-[-0.015em] text-[var(--color-ink)] transition-colors duration-200 group-hover:text-[var(--color-brand)] [font-family:var(--font-display)]">
+                    <p className="text-[17px] font-semibold tracking-[-0.015em] text-[var(--color-ink)] [font-family:var(--font-display)]">
                       {f.label}
                     </p>
                     <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-3)]">
                       {f.blurb}
                     </p>
                   </div>
-                  <span
-                    aria-hidden="true"
-                    className="ml-auto shrink-0 text-[var(--color-ink-3)] transition-all duration-200 group-hover:translate-x-1 group-hover:text-[var(--color-brand)]"
-                  >
-                    &rarr;
-                  </span>
-                </a>
+                </div>
               ))}
             </div>
           </div>

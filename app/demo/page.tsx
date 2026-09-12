@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Header } from "@/components/Header";
 import { DemoForm } from "@/components/DemoForm";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Book a demo | Jural",
+export const metadata: Metadata = pageMetadata({
+  title: "Book a Demo | Jural",
   description:
     "Book a demo to see Jural on a real matter. The private, AI-native practice platform for solo attorneys and small law firms.",
-};
+  path: "/demo",
+});
 
 /**
  * Split page: the form carries the left, an image carries the right.

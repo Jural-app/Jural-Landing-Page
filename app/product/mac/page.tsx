@@ -4,12 +4,14 @@ import { Header } from "@/components/Header";
 import { Cta } from "@/components/Cta";
 import { Footer } from "@/components/Footer";
 import { MacWindowUI } from "@/components/MacWindowUI";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Mac app | Jural",
+export const metadata: Metadata = pageMetadata({
+  title: "Legal CRM for Mac | Jural",
   description:
     "Jural for Mac is a real Mac application: drafting, review and billing on the big screen, in step with your iPhone over end-to-end encryption.",
-};
+  path: "/product/mac",
+});
 
 /**
  * The Mac page owns the other half of the platform thesis. The iPhone page

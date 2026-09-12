@@ -1,9 +1,6 @@
-import Image from "next/image";
-
 /**
- * Trust: security and recognition section.
- * Left: G2 badge + live status (uptime) card. Right: security copy.
- * Balanced margins, generous whitespace.
+ * Trust: the security argument, centred. No awards or badges until there is a
+ * real one to show; an attorney audience checks.
  *
  * Links point to the real domains:
  *   trust.jural.app  : Trust Center
@@ -13,20 +10,8 @@ export function Trust() {
   return (
     <section id="security" className="bg-white">
       <div className="mx-auto max-w-[1200px] px-6 py-20 sm:px-10 sm:py-24">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          {/* Left: G2 badge, centered in its column */}
-          <div className="flex justify-center">
-            <Image
-              src="/g2-badge.png"
-              alt="G2 Best Software 2026, Top 25 Legal Products"
-              width={868}
-              height={1000}
-              className="h-[196px] w-auto"
-            />
-          </div>
-
-          {/* Right: security copy */}
-          <div className="text-center lg:text-left">
+        <div className="mx-auto max-w-2xl">
+          <div className="text-center">
             <div className="mb-5 text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--color-brand)]">
               Security
             </div>
@@ -35,7 +20,7 @@ export function Trust() {
               Your firm&rsquo;s data. Your keys. Your control.
             </h2>
 
-            <div className="mx-auto mt-6 max-w-xl space-y-4 text-[16px] leading-relaxed text-[var(--color-ink-2)] lg:mx-0">
+            <div className="mx-auto mt-6 max-w-xl space-y-4 text-[16px] leading-relaxed text-[var(--color-ink-2)]">
               <p>
                 Jural protects case notes, messages, documents, and client
                 information with end-to-end encryption.

@@ -4,12 +4,14 @@ import { Header } from "@/components/Header";
 import { Cta } from "@/components/Cta";
 import { Footer } from "@/components/Footer";
 import { BeliefIndex } from "@/components/BeliefIndex";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About | Jural",
+export const metadata: Metadata = pageMetadata({
+  title: "About Jural",
   description:
     "Jural began with a pattern: lawyers kept asking for custom CRMs while already paying for one. The reason changed what we built.",
-};
+  path: "/about",
+});
 
 /**
  * About, rebuilt on one editorial grammar:
@@ -21,9 +23,9 @@ export const metadata: Metadata = {
  *   ▸ pacing follows the researched enterprise pattern: mission, story,
  *     numbers, audience, convictions, and the human quote LAST as the closer
  *
- * ⚠ Two placeholders that must be resolved before production:
- *   the stats are invented dev-branch figures, and the quote is attributed
- *   to "The founders" pending a real name.
+ * ⚠ One placeholder to resolve before production: the quote is attributed to
+ *   "The founders" pending a real name. The numbers section was removed until
+ *   there are verified figures.
  */
 
 /** The page's one layout grammar: label rail left, content right. */
@@ -116,48 +118,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* --------------------------------------------------------- numbers */}
-      <section aria-label="By the numbers" className="bg-[var(--color-navy-deep)]">
-        <div className="mx-auto grid max-w-[1340px] gap-6 px-5 py-16 sm:px-6 sm:py-20 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-16">
-          <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/50">
-            By the numbers
-          </div>
-          <div>
-            {/* ⚠ PLACEHOLDER FIGURES: dev-branch stand-ins, not verified. */}
-            <div className="grid gap-12 sm:grid-cols-3 sm:gap-8">
-              {[
-                {
-                  n: "1,400+",
-                  label: "Matters managed in Jural",
-                  body: "From intake to invoice, in one thread.",
-                },
-                {
-                  n: "$2.4M",
-                  label: "Invoiced by firms through Jural",
-                  body: "Our cut of it: zero.",
-                },
-                {
-                  n: "12,000+",
-                  label: "Documents read on-device",
-                  body: "Digested into case knowledge without leaving the firm.",
-                },
-              ].map((st) => (
-                <div key={st.label}>
-                  <p className="text-[clamp(3.4rem,2.4rem+3vw,5.2rem)] font-semibold leading-none tracking-[-0.04em] text-white [font-family:var(--font-display)]">
-                    {st.n}
-                  </p>
-                  <p className="mt-4 text-[15.5px] font-semibold tracking-[-0.015em] text-white [font-family:var(--font-display)]">
-                    {st.label}
-                  </p>
-                  <p className="mt-1.5 max-w-[26ch] text-[14px] leading-relaxed text-white/70">
-                    {st.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* By the numbers returns once there are real, verifiable figures to show. */}
 
       {/* -------------------------------------------------- who we build for */}
       {/* The one full-bleed moment: text on the rail, photograph running

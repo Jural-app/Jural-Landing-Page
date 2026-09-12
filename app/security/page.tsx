@@ -7,12 +7,14 @@ import { Cta } from "@/components/Cta";
 import { Footer } from "@/components/Footer";
 import { CipherPanel } from "@/components/CipherPanel";
 import { DataFlowTabs } from "@/components/DataFlowTabs";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Security | Jural",
+export const metadata: Metadata = pageMetadata({
+  title: "Security and Privacy | Jural",
   description:
-    "Jural keeps solo attorneys' and small firms' client work private by architecture: on-device AI, Signal-protocol end-to-end encryption, and a zero-knowledge relay that stores only ciphertext.",
-};
+    "How Jural keeps client work private by architecture: on-device AI, Signal-protocol end-to-end encryption, and a zero-knowledge relay that stores only ciphertext.",
+  path: "/security",
+});
 
 /**
  * The security page argues one thing: privilege physically cannot leak,

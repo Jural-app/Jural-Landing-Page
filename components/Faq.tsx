@@ -6,7 +6,8 @@
  * than from state. No client component needed.
  */
 
-const QA: { q: string; a: string[] }[] = [
+/** Exported so the homepage can publish the same questions as FAQPage structured data. */
+export const QA: { q: string; a: string[] }[] = [
   {
     q: "Where does my client data actually live?",
     a: [
