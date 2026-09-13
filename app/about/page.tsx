@@ -111,7 +111,8 @@ export default function AboutPage() {
               <p>
                 So we built Jural around the day instead: mobile-first from
                 the ground up, cases living on your own devices, synced end
-                to end encrypted, readable by no one else, including us.
+                to end encrypted, and every record we keep encrypted and
+                walled off to your firm.
               </p>
             </div>
           </div>

@@ -352,9 +352,9 @@ export default function MacPage() {
             The file cabinet is your Mac.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-white/75">
-            Cases live on your machine and sync to your iPhone end-to-end
-            encrypted. Jural&rsquo;s servers relay ciphertext; they cannot read
-            a word of your client work.
+            Cases live on your machine and stay in step with your iPhone over
+            Signal-protocol end-to-end encryption. The relay between them
+            carries only ciphertext it cannot read.
           </p>
           <a
             href="/security"

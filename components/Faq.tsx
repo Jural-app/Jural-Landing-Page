@@ -11,21 +11,21 @@ export const QA: { q: string; a: string[] }[] = [
   {
     q: "Where does my client data actually live?",
     a: [
-      "On your devices. The case on the device is the source of truth, and when you add a second device the two synchronise over end-to-end encryption. The backend relays ciphertext, so it is not sitting on a readable copy of your firm's files.",
-      "That is an architectural decision rather than a policy one, which is the point: it does not depend on us promising not to look.",
+      "On your devices, and on Jural's servers, each protected for the work it does. Your iPhone and Mac stay in step with Signal-protocol end-to-end encryption, so the relay between them carries only ciphertext it cannot read.",
+      "Case and client records are also kept in Microsoft Azure in the US, encrypted in transit and at rest, isolated to your firm and gated by role. Those records are not end-to-end encrypted, and we would rather tell you that plainly.",
     ],
   },
   {
     q: "Can Jural read my clients' documents?",
     a: [
-      "Documents are read on the device. Text layers and OCR are extracted locally, and the index the assistant searches is built and kept there too, so the raw file does not leave unencrypted.",
-      "Where a cloud model is used for harder drafting, it receives extracted text only, and nothing is retained after the request.",
+      "Documents are read on your device. Text layers and OCR are extracted locally, and the search index is built and kept there too. Documents you store in a case are held on Jural's servers, encrypted and isolated to your firm, and no support tool gives our staff access to them.",
+      "When you ask Luna, Jural's assistant, to summarise or draft, the extracted text and case context go to OpenAI in the cloud, not the raw file. Requests are sent with storage turned off, and never used to train models.",
     ],
   },
   {
     q: "Can my paralegal work in the same case?",
     a: [
-      "Yes. A case can be shared with your team or kept private to you, with a membership roster you control. Shared cases run over Signal-protocol group encryption, and the server routes ciphertext without storing message content.",
+      "Yes. Everyone in your firm works from the same cases, with roles that decide who can edit and who can only view. Case chat is end-to-end encrypted with the Signal protocol, and the relay forwards ciphertext it cannot read.",
     ],
   },
   {
@@ -44,7 +44,7 @@ export const QA: { q: string; a: string[] }[] = [
   {
     q: "Does Jural give legal advice?",
     a: [
-      "No. It finds what is in your files, drafts from them, and proposes the next step. Every output is yours to review and settle, which is why nothing is filed, sent or billed until you approve it.",
+      "No. It finds what is in your files, drafts from them, and proposes the next step. Every draft is yours to review and settle: emails, documents and signature requests go out only when you send them.",
     ],
   },
 ];

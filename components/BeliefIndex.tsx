@@ -55,7 +55,7 @@ const BELIEFS: Belief[] = [
   },
   {
     title: "Private by architecture",
-    body: "A promise is a policy. Sensitive work stays on your devices, so trust does not depend on us.",
+    body: "A promise is only a policy. What moves between your devices is end-to-end encrypted, so that part never depends on trusting us.",
     art: (
       <div className="flex items-center gap-2.5 text-[11px]">
         <span className="rounded-md bg-white px-2 py-1 font-semibold text-[var(--color-ink)] ring-1 ring-[var(--color-line)]">

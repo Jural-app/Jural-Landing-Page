@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * The encryption fact, shown once: the same note on both sides of the wire.
- * The server half starts as the readable note and encrypts itself the first
+ * The encryption fact, shown once: the same case message on your device and
+ * in the end-to-end encrypted sync relay. (Not "on our servers": case and
+ * client records there are encrypted at rest but not end-to-end.)
+ * The relay half starts as the readable note and encrypts itself the first
  * time the panel scrolls into view: a character wavefront sweeps left to
  * right, and the lock closes behind it. It runs once, in about a second,
  * and never moves again. Reduced-motion users get the finished state.
@@ -86,10 +88,10 @@ export function CipherPanel() {
         {/* on the servers */}
         <div className="flex flex-col gap-6 bg-[var(--color-brand)] p-8 sm:p-10 lg:p-12">
           <p className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-white/70">
-            On Jural&rsquo;s servers
+            In Jural&rsquo;s relay
           </p>
           <p
-            aria-label="The same note, stored as unreadable ciphertext"
+            aria-label="The same message, as unreadable ciphertext in Jural's relay"
             className="my-auto max-w-[38ch] break-all font-mono text-[13px] leading-relaxed text-white/90"
           >
             {encrypted}

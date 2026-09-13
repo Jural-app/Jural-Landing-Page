@@ -17,18 +17,19 @@ export function Trust() {
             </div>
 
             <h2 className="text-[clamp(1.75rem,1rem+2.4vw,2.7rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-[var(--color-ink)] [font-family:var(--font-display)]">
-              Your firm&rsquo;s data. Your keys. Your control.
+              Your firm&rsquo;s data. Protected at every layer.
             </h2>
 
             <div className="mx-auto mt-6 max-w-xl space-y-4 text-[16px] leading-relaxed text-[var(--color-ink-2)]">
               <p>
-                Jural protects case notes, messages, documents, and client
-                information with end-to-end encryption.
+                Device sync, case chat and attachments are end-to-end encrypted
+                with the Signal protocol, readable only on your firm&rsquo;s
+                authorized devices.
               </p>
               <p>
-                Your data is designed to be readable only on authorized devices.
-                Jural does not need access to the contents of your firm&rsquo;s
-                confidential information.
+                Case and client records are kept on Microsoft Azure in the US,
+                encrypted in transit and at rest, isolated to your firm and
+                gated by role.
               </p>
               <p className="font-semibold text-[var(--color-ink)]">
                 Privacy isn&rsquo;t an add-on. It&rsquo;s part of the architecture.

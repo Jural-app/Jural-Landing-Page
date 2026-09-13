@@ -29,7 +29,7 @@ const PANELS = [
   },
   {
     t: "Private by architecture",
-    d: "Your sensitive client data is protected with end-to-end encryption and designed to stay under your control. Jural is built without relying on a traditional central application database holding your firm’s confidential information.",
+    d: "Device sync and case chat are end-to-end encrypted with the Signal protocol. Everything else is encrypted in transit and at rest, isolated to your firm and hosted on Microsoft Azure in the US. And your work is never used to train AI models.",
     art: <LuShieldCheck className={ICON} strokeWidth={1.4} aria-hidden="true" />,
     bg: "bg-[var(--color-canvas)]", // warm off-white
     fg: "text-[var(--color-ink)]",

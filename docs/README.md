@@ -2,9 +2,10 @@
 
 An AI pocket CRM for lawyers. Jural puts a firm's entire practice — matters,
 documents, deadlines, drafting, billing and legal research — into a single
-chat-style app on the iPhone, driven by an AI model that runs **on the device**.
+chat-style app on iPhone and Mac, driven by Luna, an AI assistant that runs in
+the cloud on OpenAI.
 
-Jural is in private beta.
+Jural for iPhone and Mac are launched.
 
 ---
 
@@ -96,23 +97,20 @@ memory is inspectable and revocable by the user — not a black box.
 
 ## Privacy: the defining constraint
 
-**The model runs locally on the iPhone through Apple Intelligence. Client
-matters are not uploaded, not queued on a server, and not processed by any
-third-party model.**
+> This section previously described on-device AI. That is not how the product
+> works. Canonical facts: `trust-center/01-FACTS.md`.
 
-This is architecture, not policy. It pays off three ways:
-
-- **Privilege survives it.** No third party ever processes a client confidence,
-  so there is no vendor DPA to negotiate, no sub-processor list to audit, and no
-  breach notification to write about a copy that doesn't exist.
-- **No AI surcharge.** Competing tools meter tokens against a paid model API and
-  bill it back per seat. Jural has no per-token cost to pass on.
-- **Works with no signal.** Courthouse basements, flights, lifts. The
-  intelligence is already on the device.
-
-Any feature proposal that requires shipping matter content off the device should
-be treated as a change to the product's core premise, not an implementation
-detail.
+- **End-to-end encrypted (Signal protocol):** device sync and case chat; the
+  relay forwards ciphertext it cannot read. Attachments are encrypted on device
+  (AES-256-GCM).
+- **On Jural's servers (Microsoft Azure, US):** case and client records,
+  stored documents, intake and e-signature files. Encrypted in transit and at
+  rest, isolated per firm, role-based access. **Not** end-to-end encrypted.
+- **On device:** text extraction, OCR and the search index. The raw file is
+  not sent to the AI for firm documents (client-intake uploads are).
+- **AI:** Luna runs in the cloud on OpenAI. Extracted text and case context
+  are sent when AI features are used, with storage turned off; OpenAI does not
+  train on API data.
 
 ---
 
@@ -155,9 +153,7 @@ Small-team collaboration without enterprise machinery:
 
 ## Platform
 
-- **iOS only** at present, built in Swift/SwiftUI. Requires an
-  Apple-Intelligence-capable iPhone — a direct consequence of the model running
-  on-device.
+- **Native iPhone and Mac apps**, built in Swift/SwiftUI.
 - Follows the system appearance: **light and dark** both supported, per the
   phone's setting.
 - **Android is planned after iOS.** The intent is to ship the on-device
@@ -186,8 +182,14 @@ For anyone writing copy, docs or UI text for Jural:
 
 - **Jural does not provide legal advice.** It is practice management software
   for licensed professionals; every output is the lawyer's to review and settle.
-- Never imply client data is processed in the cloud, or that any action is taken
-  without approval. Both are false and both are load-bearing.
+- Claim only LIVE facts from `trust-center/01-FACTS.md`. Luna processes
+  client data in the cloud (OpenAI); say so. E2EE covers sync and case chat
+  only, never the whole product.
+- Never: "zero-knowledge" for the product, "never leaves your device",
+  "readable by no one, including us", "no central database", "your keys",
+  "on-device AI", "retains nothing", "SOC 2 compliant", or pending features
+  (Mac lock, remote wipe, export, case-level access) as current.
+- Never imply any action is taken without approval.
 - Pricing is not yet public. The one commitment made so far: **there will be no
   separate AI add-on fee.**
 

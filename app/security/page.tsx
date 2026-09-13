@@ -12,13 +12,15 @@ import { pageMetadata } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   title: "Security and Privacy | Jural",
   description:
-    "How Jural keeps client work private by architecture: on-device AI, Signal-protocol end-to-end encryption, and a zero-knowledge relay that stores only ciphertext.",
+    "How Jural protects client work: Signal-protocol end-to-end encryption for device sync and case chat, encrypted firm-isolated records on Microsoft Azure, and AI that never trains on your data.",
   path: "/security",
 });
 
 /**
- * The security page argues one thing: privilege physically cannot leak,
- * because the readable copy of the caseload never exists on our side. Same
+ * The security page argues one thing: every layer is protected, and we say
+ * plainly which layers are end-to-end encrypted (sync, case chat, attachments)
+ * and which are encrypted and firm-isolated on our servers. Facts come from
+ * trust-center/01-FACTS.md; claim nothing that file marks pending. Same
  * section system as the product pages: eyebrow, display heading, lede, one
  * drawn product panel per section. The only motion is the ciphertext panel
  * sealing itself once; on a page like this, calm is the credibility.
@@ -53,13 +55,13 @@ function ArtDocuments() {
   );
 }
 
-function ArtOnDeviceAI() {
+function ArtAssistant() {
   return (
     <svg viewBox="0 0 220 150" aria-hidden="true" className="h-full w-full">
       {/* the phone */}
       <rect {...STROKE} x="84" y="18" width="52" height="114" rx="10" />
       <line {...STROKE} x1="102" y1="26" x2="118" y2="26" />
-      {/* the model, resident inside */}
+      {/* Luna's mark, as it appears in the app (the model itself runs in the cloud) */}
       <path
         {...BRAND}
         d="M110 55l3.4 8.6 8.6 3.4-8.6 3.4-3.4 8.6-3.4-8.6-8.6-3.4 8.6-3.4z"
@@ -156,32 +158,32 @@ const LAYERS: {
 }[] = [
   {
     layer: "Client documents",
-    copy: "Read and indexed on the device. Text extraction, OCR and the search index all stay local, and the raw file never leaves unencrypted.",
+    copy: "Read and indexed on the device: text extraction, OCR and the search index all stay local. Attachments shared between devices are sealed on the device with AES-256-GCM, and stored files are encrypted in transit and at rest.",
     Art: ArtDocuments,
   },
   {
     layer: "Case knowledge & AI",
-    copy: "On-device by default. When the cloud model takes a harder drafting step it receives extracted text only, retains nothing, and never trains on your work.",
-    Art: ArtOnDeviceAI,
+    copy: "Luna, Jural’s assistant, runs in the cloud on OpenAI. She receives the extracted text and case context a request needs, not your raw files, sent with storage turned off and never used to train models.",
+    Art: ArtAssistant,
   },
   {
     layer: "Collaboration chat",
-    copy: "Case chat with your team runs over Signal-protocol group encryption. The server relays ciphertext and stores no message content.",
+    copy: "Case chat with your team is end-to-end encrypted with the Signal protocol. The relay forwards ciphertext it cannot read, and deletes each message once it is delivered.",
     Art: ArtCollab,
   },
   {
     layer: "Device-to-device sync",
-    copy: "Your iPhone and Mac keep each other current over encrypted transport. The backend is a zero-knowledge relay: it forwards what it cannot read.",
+    copy: "Your iPhone and Mac keep each other current with Signal-protocol end-to-end encryption. The relay between them holds only public keys and ciphertext: it forwards what it cannot read.",
     Art: ArtSync,
   },
   {
     layer: "App access",
-    copy: "The app locks behind Face ID and a PIN before any case data loads, so a lost or borrowed device shows nothing at all.",
+    copy: "On iPhone, Jural locks behind Face ID and a PIN, and locks again the moment it leaves the screen. Your firm can see every linked device and revoke any one of them.",
     Art: ArtAppLock,
   },
   {
-    layer: "Sign-in",
-    copy: "Authentication runs on Auth0 with API-scoped tokens, so a session carries exactly the access it needs and nothing more.",
+    layer: "Sign-in & firm isolation",
+    copy: "Sign in through Auth0 with multi-factor authentication required. Short-lived tokens, firm membership and role are checked on every request, so each firm sees only its own work.",
     Art: ArtSignIn,
   },
 ];
@@ -190,31 +192,33 @@ const QA: { q: string; a: string[] }[] = [
   {
     q: "Can Jural employees read my cases?",
     a: [
-      "No. The server holds ciphertext it has no keys for, so there is nothing on our side to read. That holds for anyone with access to our systems, not just as a matter of policy but as a property of the architecture.",
+      "Not what travels between your devices. Device sync, case chat and shared attachments are end-to-end encrypted with the Signal protocol, and our relay holds only ciphertext it has no keys for.",
+      "Case and client records, stored documents, intake and e-signature files live on Jural’s servers in Microsoft Azure in the US. They are encrypted in transit and at rest, isolated to your firm, and not end-to-end encrypted. Production access is limited to authorized personnel with multi-factor authentication, and no support tool gives our staff access to customer data.",
     ],
   },
   {
     q: "Is my client data used to train AI models?",
     a: [
-      "No. The models that read your documents run on your device. Where the cloud model helps with a harder drafting step, it receives extracted text for that request only, retains nothing afterwards, and nothing is ever used for training.",
+      "No. Jural does not train models on customer data. Luna runs on OpenAI’s API with storage turned off, and OpenAI does not use API data to train its models.",
     ],
   },
   {
-    q: "What does the cloud model actually see?",
+    q: "What does Luna actually see?",
     a: [
-      "Only the extracted text needed for the step you asked for, sent under a strict schema, with no retention after the response. It never receives your raw files and never has access to the broader caseload.",
+      "What the request needs: your message, the relevant case facts and memory, and, for a summary, up to about 24,000 characters of text extracted from the document on your device. Luna works from that text, not your files.",
+      "During client intake she also sees the client’s answers; files the client uploads stay on Jural’s servers and are not sent to her. Requests are sent with storage turned off. Under OpenAI’s standard API terms they may be held for up to 30 days for abuse monitoring, and are never used for training.",
     ],
   },
   {
     q: "What happens to my data if I leave?",
     a: [
-      "Your cases live on your devices, not on our servers. Leaving Jural does not involve requesting your files back, because a readable copy never existed on our side.",
+      "Your data belongs to your firm. Documents can be downloaded from the case, and when a firm cancels, its data is deleted from Jural’s servers within 30 days, with backups ageing out on a seven-day cycle.",
     ],
   },
   {
     q: "What if I lose my phone?",
     a: [
-      "The app is locked behind Face ID and a PIN before any case data loads. Your other devices remain complete copies of your work, and the session on the lost device can be signed out remotely.",
+      "On iPhone, Jural is locked behind Face ID and a PIN, and locks again whenever it leaves the screen. Your firm can see every linked device and revoke the lost one, and your cases carry on from your other devices.",
     ],
   },
 ];
@@ -234,13 +238,14 @@ export default function SecurityPage() {
           </div>
 
           <h1 className="mx-auto mt-5 max-w-[16ch] text-[clamp(2.3rem,1.2rem+3.4vw,4rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-[var(--color-ink)] [font-family:var(--font-display)]">
-            Private by architecture, not by policy.
+            Private by architecture. Protected at every layer.
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-[clamp(1.02rem,0.97rem+0.4vw,1.18rem)] leading-relaxed text-[var(--color-ink-2)]">
-            Your cases live on your devices. The AI reads them there. What
-            travels between your iPhone and your Mac is end-to-end encrypted,
-            so our server holds nothing it can read.
+            What travels between your iPhone, your Mac and your team is
+            end-to-end encrypted with the Signal protocol. Everything else is
+            encrypted, isolated to your firm and hosted on Microsoft Azure in
+            the US.
           </p>
 
           <a
@@ -295,10 +300,11 @@ export default function SecurityPage() {
                   The industry standard
                 </h2>
                 <p className="mt-4 max-w-[52ch] text-[15.5px] leading-relaxed text-[var(--color-ink-2)]">
-                  Legal software typically stores every matter in readable
-                  form on the vendor&rsquo;s servers, protected by policy:
-                  access controls, audits, and a commitment not to look.
-                  Client confidentiality depends on that commitment holding.
+                  Legal software typically keeps every matter, every message
+                  and every file on the vendor&rsquo;s servers, protected by
+                  policy: access controls, audits, and a commitment not to
+                  look. Client confidentiality depends on that commitment
+                  holding everywhere.
                 </p>
               </div>
 
@@ -323,16 +329,17 @@ export default function SecurityPage() {
                   The Jural architecture
                 </h2>
                 <p className="mt-4 max-w-[52ch] text-[15.5px] leading-relaxed text-[var(--color-ink-2)]">
-                  Jural is designed so that commitment is never required.
-                  Cases are processed on your devices, and everything that
-                  syncs between them is end-to-end encrypted. No readable
-                  copy of your caseload exists outside your firm.
+                  Jural narrows what that commitment has to cover. Device
+                  sync, case chat and attachments are end-to-end encrypted, so
+                  our relay carries only ciphertext. Case and client records
+                  are encrypted in transit and at rest, isolated to your firm
+                  and gated by role. And we say plainly which is which.
                 </p>
                 <a
                   href="#server-sees"
                   className="group mt-5 inline-flex items-center gap-2 text-[14.5px] font-semibold text-[var(--color-ink)] underline underline-offset-4"
                 >
-                  See what our server sees
+                  See what the relay sees
                 </a>
               </div>
             </div>
@@ -343,7 +350,7 @@ export default function SecurityPage() {
       {/* ------------------------------------------ what the server sees */}
       <section
         id="server-sees"
-        aria-label="What our server sees"
+        aria-label="What the relay sees"
         className="scroll-mt-28 bg-[var(--color-canvas)]"
       >
         <div className="mx-auto max-w-[1240px] px-5 py-20 sm:px-8 sm:py-24">
@@ -352,12 +359,14 @@ export default function SecurityPage() {
               In practice
             </div>
             <h2 className="mt-4 text-[clamp(1.8rem,1.1rem+2.2vw,2.9rem)] font-semibold leading-[1.06] tracking-[-0.03em] text-[var(--color-ink)] [font-family:var(--font-display)]">
-              What our server sees.
+              What the relay sees.
             </h2>
             <p className="mt-4 text-[15.5px] leading-relaxed text-[var(--color-ink-2)]">
-              The same case note, as it exists on your iPhone and as it
-              exists on Jural&rsquo;s servers. Everything is encrypted before
-              it leaves your device.
+              The same case message, as it exists on your iPhone and as it
+              passes through Jural&rsquo;s sync relay. It is encrypted before
+              it leaves your device, and the relay deletes it once delivered.
+              Case and client records kept on our servers are encrypted in
+              transit and at rest, and isolated to your firm.
             </p>
           </div>
 
@@ -389,8 +398,9 @@ export default function SecurityPage() {
               Security at every layer.
             </h2>
             <p className="mt-4 max-w-[54ch] text-[15.5px] leading-relaxed text-[var(--color-ink-2)]">
-              One principle runs through the whole product: client work stays
-              on your devices, and whatever leaves them is encrypted.
+              One principle runs through the whole product: everything is
+              encrypted, end-to-end wherever the work allows, and we say
+              plainly which is which.
             </p>
           </div>
 
@@ -423,7 +433,7 @@ export default function SecurityPage() {
               Compliance
             </div>
             <h2 className="mt-4 max-w-[18ch] text-[clamp(1.8rem,1.1rem+2.2vw,2.9rem)] font-semibold leading-[1.06] tracking-[-0.03em] text-white [font-family:var(--font-display)]">
-              Built to the standards that matter.
+              The standards we hold ourselves to.
             </h2>
           </div>
 
@@ -447,11 +457,11 @@ export default function SecurityPage() {
                 <path d="M8.5 15.2L7 21l5-2.5L17 21l-1.5-5.8" />
               </svg>
               <p className="mt-4 text-[17px] font-semibold tracking-[-0.01em] text-white">
-                SOC 2
+                SOC 2 program: in progress
               </p>
               <p className="mt-2.5 max-w-[32ch] text-[14px] leading-relaxed text-white/70">
-                Security program aligned to the AICPA Trust Services
-                Criteria.
+                Working toward a SOC 2 Type I report, then Type II. Not yet
+                certified; progress is tracked in the Trust Center.
               </p>
             </div>
             <div>

@@ -19,9 +19,21 @@ Native says where it lives → CTA closes.
 
 ## Claim guardrails
 
-- SOC 2 is on the **Sprinto track**, not certified. Never claim certification.
-- Trust center is **in progress**.
-- App Store release is **roadmap**, not shipped.
+Source of truth: `trust-center/01-FACTS.md`. Claim only LIVE facts.
+
+- SOC 2 is **not certified**; the program (Type I, then Type II, via Sprinto)
+  is in progress. Trust Center is **live** at trust.jural.app.
+- iPhone and Mac apps are **launched**.
+- AI is **Luna, in the cloud on OpenAI**, sent with storage off; OpenAI does
+  not train on API data. There is **no on-device generative AI** (only text
+  extraction, OCR and the search index run on device). Never "retains nothing".
+- **End-to-end encryption covers device sync, case chat and attachments only**
+  (Signal protocol). Case and client records are on Azure (US), encrypted in
+  transit and at rest, firm-isolated, role-gated, **not** E2EE.
+- Never: "zero-knowledge" for the product, "never leaves your device",
+  "readable by no one, including us", "no central database", "your keys",
+  "on-device AI", or any pending feature (Mac lock, remote wipe, export,
+  case-level access) as current.
 
 ---
 
@@ -98,8 +110,8 @@ the thesis is made.
 showcase, bento grid.*
 
 ### 8. How the AI works: NEW
-Hybrid: on-device for private work, cloud only for hard generation, sends
-extracted text, retains nothing. Case memory reconciles facts with provenance
+Documents read and indexed on device; Luna (cloud, OpenAI) receives extracted
+text and case context, storage off, never trained on. Case memory reconciles facts with provenance
 rather than overwriting. "Structure beats the model."
 *Mobbin: how-it-works, numbered steps, architecture diagram.*
 

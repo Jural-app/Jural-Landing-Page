@@ -358,8 +358,8 @@ export default function IPhonePage() {
             In your pocket. Literally.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-white/75">
-            The case file on your iPhone is the real file, on your device,
-            behind Face ID. Not a window into somebody else&rsquo;s server.
+            The case file lives on your iPhone itself, behind Face ID and a
+            PIN, and stays in step with your Mac over end-to-end encryption.
           </p>
           <a
             href="/security"

@@ -13,11 +13,14 @@ import { LuCloud, LuLock, LuSmartphone } from "react-icons/lu";
  * list on small screens and gets anchored beside the stack from lg. One DOM, no
  * duplication.
  *
- * The concept is the boundary. Everything about the case sits on the device.
- * When a bigger model is needed for drafting, only the words travel, never the
- * files, and nothing is kept afterwards. So the middle slab is genuinely
- * transparent: a real rgba fill with a backdrop blur, not a material trick.
- * Nothing rests on it because nothing is stored on it.
+ * The concept is the boundary. Documents are read and indexed on the device.
+ * When Luna (cloud, OpenAI) drafts or answers, the extracted text travels, not
+ * the file, sent with storage off and never used for training. Do NOT say
+ * "nothing is kept": OpenAI may hold API data up to 30 days for abuse
+ * monitoring. The middle slab is genuinely transparent: a real rgba fill with
+ * a backdrop blur, not a material trick. The relay only forwards ciphertext.
+ * Case and client records also live on Jural's servers (encrypted, firm-
+ * isolated, not end-to-end); see trust-center/01-FACTS.md.
  *
  * Copy note: the blueprint's own words for this ("ciphertext", "zero-knowledge
  * relay", "retrieval index") are accurate and unreadable to an attorney.
@@ -51,20 +54,20 @@ const LEADER =
 const LAYERS = [
   {
     n: "03",
-    t: "The cloud model",
-    d: "Used only for heavy drafting. It gets the words it needs, never your files, and forgets them once it replies.",
+    t: "Luna, in the cloud",
+    d: "Jural's assistant runs on OpenAI. She gets the text a request needs, not your files, with storage turned off and never used to train models.",
     pos: "lg:absolute lg:left-[65.5%] lg:top-[22%] lg:w-[340px]",
   },
   {
     n: "02",
     t: "The connection",
-    d: "When your devices sync, or you share a case, it travels scrambled. We pass it along and keep no copy.",
+    d: "When your devices sync, or your team talks in a case, it travels end-to-end encrypted. Our relay passes it along without being able to read it.",
     pos: "lg:absolute lg:left-[65.5%] lg:top-[45%] lg:w-[340px]",
   },
   {
     n: "01",
     t: "Your device",
-    d: "Your documents, your notes and everything Jural has learned about the case are held on the phone itself.",
+    d: "Your documents are read and indexed on the phone itself, and your case file lives there too, behind Face ID.",
     pos: "lg:absolute lg:left-[65.5%] lg:top-[68%] lg:w-[340px]",
   },
 ];
@@ -95,13 +98,13 @@ export function Architecture() {
               How it works
             </div>
             <h2 className="max-w-[15ch] text-[clamp(2rem,1.1rem+2.9vw,3.1rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-white [font-family:var(--font-display)]">
-              Nothing readable ever leaves your device.
+              Encrypted in motion. Protected at rest.
             </h2>
           </div>
 
           <p className="max-w-[40ch] text-[clamp(1.02rem,0.97rem+0.4vw,1.15rem)] leading-relaxed tracking-[-0.014em] text-white/60">
-            Most of the work happens on the phone in your hand. When Jural needs
-            a bigger model to draft, it sends the words and not the file.
+            Documents are read on the phone in your hand. When Luna drafts in
+            the cloud, she gets the extracted text, not the file.
           </p>
         </div>
 
@@ -140,7 +143,7 @@ export function Architecture() {
                   <Chip x={26} y={30} w={94} label="Documents" />
                   <Chip x={206} y={54} w={100} label="Case notes" />
                   <Chip x={22} y={238} w={80} label="Search" />
-                  <Chip x={188} y={264} w={106} label="On-device AI" />
+                  <Chip x={188} y={264} w={106} label="On-device OCR" />
                 </div>
 
                 {/* ---- 02 connection: hollow. the whole argument. ---- */}

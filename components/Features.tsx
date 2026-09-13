@@ -44,7 +44,7 @@ const STOPS = [
     time: "11:45 AM",
     place: "The mail brings paper",
     t: "It reads your documents",
-    d: "Drop in a letter, a contract or an invoice and Jural reads it on your phone: what it is, who is in it, the dates and the amounts. The file never leaves your device unencrypted.",
+    d: "Drop in a letter, a contract or an invoice and Jural reads the text on your phone, then tells you what it is, who is in it, the dates and the amounts. Luna works from that text, not the file itself.",
     ui: <DocumentsUI />,
   },
   {

@@ -69,7 +69,7 @@ export function DataFlowTabs() {
               fontSize="13"
               fontFamily="var(--font-sans)"
             >
-              Zero-knowledge relay
+              Ciphertext-only relay
             </text>
           </svg>
         </div>
@@ -78,7 +78,8 @@ export function DataFlowTabs() {
       {/* caption */}
       <p className="mx-auto mt-9 max-w-md text-center text-[16.5px] leading-relaxed text-[var(--color-ink)]">
         Edits leave one device already encrypted and arrive at the other still
-        encrypted. The relay in the middle forwards what it cannot open.
+        encrypted. The relay in the middle forwards what it cannot open, then
+        lets it go.
       </p>
     </div>
   );
