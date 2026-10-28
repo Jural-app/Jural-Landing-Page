@@ -6,9 +6,8 @@ import Image from "next/image";
  * width. No container, no card, the panels run to the viewport edge and the
  * split itself is the only structure.
  *
- * Only the section list, the CTA and the two live subdomains are links.
- * Everything else is plain text until the pages behind it exist, because a link
- * to nowhere is worse than no link at all.
+ * Only pages that exist are links. Terms of Service stays out until it is
+ * published, because a link to nowhere is worse than no link at all.
  */
 
 const BIG = [
@@ -33,15 +32,19 @@ const IN_THE_APP = [
   "Time and billing",
 ];
 
-/** Live today, so these are real links. */
+/** Live today, so these are real links. External ones open in a new tab. */
 const LIVE = [
+  { label: "Support", href: "/support" },
+  { label: "Privacy Policy", href: "/privacy" },
   { label: "Trust Center", href: "https://trust.jural.app" },
   { label: "Status", href: "https://status.jural.app" },
 ];
 
-// Plain text for now. Give these real URLs and they can become links again.
-const COMPANY = ["Contact us", "Privacy Policy", "Terms of Service"];
-const LEGAL = ["Privacy Policy", "Terms of Service", "Security"];
+const LEGAL = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Security", href: "/security" },
+  { label: "Support", href: "/support" },
+];
 const SOCIAL = ["LinkedIn", "X"];
 
 /** Lines the footer up with the page above. */
@@ -92,17 +95,11 @@ export function Footer() {
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...(l.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="text-[13.5px] text-[var(--color-ink-2)] transition-colors hover:text-[var(--color-brand)]"
                     >
                       {l.label}
                     </a>
-                  </li>
-                ))}
-                {COMPANY.map((t) => (
-                  <li key={t} className="text-[13.5px] text-[var(--color-ink-2)]">
-                    {t}
                   </li>
                 ))}
               </ul>
@@ -155,12 +152,14 @@ export function Footer() {
       >
         <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
           <span>All rights reserved © {new Date().getFullYear()} Jural</span>
-          {LEGAL.map((t) => (
-            <span key={t} className="flex items-center gap-2.5">
+          {LEGAL.map((l) => (
+            <span key={l.label} className="flex items-center gap-2.5">
               <span aria-hidden="true" className="text-[var(--color-ink-3)]/45">
                 ·
               </span>
-              {t}
+              <a href={l.href} className="transition-colors hover:text-[var(--color-brand)]">
+                {l.label}
+              </a>
             </span>
           ))}
         </div>

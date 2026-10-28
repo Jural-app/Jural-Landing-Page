@@ -27,6 +27,8 @@ export const ROUTES = [
   { path: "/security", priority: 0.8 },
   { path: "/demo", priority: 0.7 },
   { path: "/about", priority: 0.6 },
+  { path: "/support", priority: 0.5 },
+  { path: "/privacy", priority: 0.4 },
 ] as const;
 
 /**
